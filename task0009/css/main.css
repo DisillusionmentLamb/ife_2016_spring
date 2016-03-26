@@ -1,0 +1,216 @@
+@import url("font-awesome.min.css");
+
+body {
+	height: 100%;
+	min-width: 768px;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+
+html, body, h1, h2, h3, p, ul, li, nav, footer, div {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+em {
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* header部分 */
+
+header {
+	width: 100%;
+	min-width: 1280px;
+	height: 55px;
+	background: #2189bf;
+}
+
+header .logo {
+	float: left;
+	margin: 10px 50px 0;
+}
+
+header .header-aside {
+	float: right;
+	color: #aaa;
+	margin-top: 12px;
+	margin-right: 80px;
+	line-height: 28px;
+}
+
+header .search-bar {
+	float: left;
+	position: relative;
+}
+
+.search-bar input {
+	width: 300px;
+	height: 28px;
+	border: none;
+	background: #fff;
+	border-radius: 20px;
+	padding-left: 50px;
+}
+
+.search-bar i {
+	display: inline-block;
+	position: absolute;
+	z-index: 1;
+	left: 15px;
+	top: 7px;
+}
+
+.login {
+	display: inline-block;
+	color: #fff;
+	margin-top: 1px;
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+/* 页面内容部分 */
+
+.content-warpper {
+	position: relative;
+	display: flex;
+	width: 1280px;
+	margin: 0 auto;
+}
+
+/* 侧边栏部分 */
+
+aside {
+	flex: 0 0 260px;
+	background: #2a2e3d;
+	font-size: 0.85rem;
+}
+
+aside section {
+	width: 100%;
+}
+
+aside .user-info {
+	height: 150px;
+	padding: 15px 65px;
+}
+
+.user-info .user-img-name {
+	margin-bottom: 18px;
+}
+
+.user-info .user-img-warpper {
+	float: left;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #bababe;
+	border-radius: 50%;
+}
+
+.user-info .user-img {
+	width: 80%;
+	height: 80%;
+	margin: 6px;
+	background: #bababe;
+	border-radius: 50%;
+}
+
+.user-info .user-name {
+	line-height: 60px;
+	margin-left: 100px;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.pages-info ul {
+	display: inline-block;
+	list-style: none;
+}
+
+.pages-info ul li {
+	display: inline-block;
+	box-sizing: content-box;
+	width: 40px;
+	padding: 0 10px;
+	text-align: center;
+	color: #576477;
+}
+
+.pages-info ul li:first-child {
+	border-right: 1px solid #576477;
+}
+
+.menu ul {
+	list-style: none;
+}
+
+.menu a {
+	color: #576477;
+}
+
+.menu .main {
+	padding: 0 45px;
+	line-height: 40px;
+}
+
+.menu .main.selected, .menu .main:hover {
+	background: #383d4e;
+}
+
+.selected .menu-item, .main:hover > a, .second.selected > a, .second:hover > a, .third:hover {
+	color: #fff;
+}
+
+.drop-down li {
+	padding: 0 25px;
+}
+
+
+/* 主要内容部分 */
+
+.content {
+	flex: 0 0 1020px;
+	background: #eeeded;
+}
+
+/* 主要内容导航栏部分 */
+
+.content-header {
+	background: #fff;
+	padding: 0 20px;
+}
+
+.content-header ul {
+	display: inline-block;
+}
+
+.content-header li {
+	list-style: none;
+	display: inline-block;
+	float: left;
+	line-height: 30px;
+	height: 30px;
+	font-size: .85rem;
+	color: #aaa;
+}
+
+.content-header li:after {
+	content: "/";
+	padding: 0 10px;
+}
+
+.content-header > ul > li:last-child {
+	color: #2189bf;
+}
+
+.content-header > ul > li:last-child:after {
+	content: "";
+}
