@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<!-- 禁止缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>task-01-11</title>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<!-- 头部 -->
+	<header>
+		<a href="#">返回</a>
+		<h1>这是标题</h1>
+	</header>
+	<!-- 导航 -->
+	<nav>
+		<ul class="flex-container">
+			<li>导航</li>
+			<li class="on">导航</li>
+			<li>导航</li>
+			<li>导航</li>
+			<li>导航</li>
+		</ul>
+	</nav>
+	<!-- 轮播图 -->
+	<section class="banner">
+		<img src="images/bear_main.png" alt="bear">
+	</section>
+	<!-- 标签 -->
+	<section class="tags">
+		<ul  class="flex-container">
+			<li>
+				<img src="images/tab.png" alt="tag">
+				<span>标签</span>
+			</li>
+			<li>
+				<img src="images/tab.png" alt="tag">
+				<span>标签</span>
+			</li>
+			<li>
+				<img src="images/tab.png" alt="tag">
+				<span>标签</span>
+			</li>
+			<li>
+				<img src="images/tab.png" alt="tag">
+				<span>标签</span>
+			</li>
+			<li>
+				<img src="images/tab.png" alt="tag">
+				<span>标签</span>
+			</li>
+		</ul>
+	</section>
+	<!-- 分栏 -->
+	<section class="column">
+		<ul  class="flex-container">
+			<li class="border-right">
+				<img src="images/col-1.png" alt="">
+				<h2>分栏一</h2>
+				<h3>分栏小标题</h3>
+			</li>
+			<li class="border-right">
+				<img src="images/col-1.png" alt="">
+				<h2>分栏一</h2>
+				<h3>分栏小标题</h3>
+			</li>
+			<li>
+				<img src="images/col-1.png" alt="">
+				<h2>分栏一</h2>
+				<h3>分栏小标题</h3>
+			</li>
+		</ul>
+	</section>
+	<div class="separator"><!-- 分隔条 --></div>
+	<!-- 模块 -->
+	<section class="module">
+		<h2>模块一</h2>
+		<div class="mod-main clearfix">
+			<img src="images/mod.png" alt="bear">
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<img src="images/mod.png" alt="bear">
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+		</div>
+	</section>
+	<div class="separator"><!-- 分隔条 --></div>
+	<section class="module">
+		<h2>模块二</h2>
+		<div class="mod-main clearfix">
+			<img src="images/mod.png" alt="bear">
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<img src="images/mod.png" alt="bear">
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+			<div>这是文案</div>
+		</div>
+	</section>
+	<div class="separator"><!-- 分隔条 --></div>
+	<!-- 文章 -->
+	<section class="article clearfix">
+		<img src="images/article.png" alt="article">
+		<h2>这是文章标题字号是22的文章标题</h2>
+		<span class="resource">文章来源 六分钟前</span>
+	</section>
+	<section class="article clearfix">
+		<img src="images/article.png" alt="article">
+		<h2>这是文章标题字号是22的文章标题</h2>
+		<span class="resource">文章来源 六分钟前</span>
+	</section>
+	<!-- 图文 -->
+	<section class="art-pic clearfix">
+		<h2>这是文章标题字号是22的文章标题</h2>
+		<img src="images/article.png" alt="article" class="first">
+		<img src="images/article.png" alt="article">
+		<img src="images/article.png" alt="article">
+		<span class="resource">文章来源 六分钟前</span>
+	</section>
+	<script>
+	/**
+	  * 模块右侧的区块
+	  * 在不能设置确定高度时（高度应该按屏幕大小自动变化）
+	  * 我不会用纯CSS实现
+	  * 用js加上数学线性拟合暴力解决
+	 **/
+	function setHeight() {
+		var screenWidth = window.screen.availWidth;
+		var calHeight = 0.5121 * screenWidth - 3.363;
+		var modArr = document.getElementsByClassName('mod-main');
+		for (i = 0; i < modArr.length; i++) {
+			modArr[i].style.height =  calHeight + "px";
+		}
+	}
+	window.onload = setHeight;
+	window.onresize = setHeight;
+	</script>
+</body>
+</html>

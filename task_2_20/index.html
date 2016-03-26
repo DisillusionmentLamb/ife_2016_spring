@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>task-02-18</title>
+	<style>
+		#container div {
+			width:100px;
+			height:100px;
+			float:left;
+			margin:20px;
+			background-color:red;
+			color:white;
+			font-size:16px;
+			line-height:100px;
+			text-align:center;
+		}
+		#container div span {
+			background-color:blue;
+		}
+		#inputNum {
+			width:300px;
+			height:200px;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="inputNum"></textarea>
+	<button id="unshiftBtn">左侧入</button>
+	<button id="pushBtn">右侧入</button>
+	<button id="shiftBtn">左侧出</button>
+	<button id="popBtn">右侧出</button>
+	<input type="text" id="searchWord">
+	<button id="searchBtn">查询</button>
+	<div id="container"></div>
+	<script src="index.js"></script>
+</body>
+</html>
