@@ -1,3 +1,10 @@
+# 幻灭的羔羊团队(2016年春季班) 代码及展示
+> 团队地址:
+
+> 百度IFE：[http://ife.baidu.com/group/profile?groupId=956](http://ife.baidu.com/group/profile?groupId=956)
+
+> GitHub : [https://github.com/DisillusionmentLamb/ife_2016_spring](https://github.com/DisillusionmentLamb/ife_2016_spring)
+
 ### 任务七：实现常见的技术产品官网的页面架构及样式布局
 #### 任务介绍
 >任务目的
@@ -14,9 +21,7 @@
 > 完成情况
 > * 与PSD文件几乎完全一致（包括布局，尺寸，颜色等）
 > * 自己按实际情况用CSS添加了一些效果（比如hover效果）
-
-> ToDo
-> * CSS 有一定的冗余，不够简练
-> * HTML 标签加强语义化
-> * 尝试使用 HTML5 标签 与 CSS3 特性
-> * 测试及解决兼容性问题
+> * 能适应大屏幕
+> * 尝试了一些CSS3新特性
+> * 兼容IE8以上，chrome、firefox 等浏览器
+> * 小细节处理得挺好
