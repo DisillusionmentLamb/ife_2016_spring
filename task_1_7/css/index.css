@@ -7,8 +7,8 @@ html, body, ul, ol, li, p, h1, h2, h3, pre, button, input {
 }
 
 body {
+	width:100%;
 	min-width:1280px;
-	margin:0 auto;
 	font-family:"Microsoft YaHei", SimHei, STHeiti, sans-serif;
 }
 
