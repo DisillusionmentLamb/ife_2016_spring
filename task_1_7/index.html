@@ -8,59 +8,49 @@
 </head>
 <body>
 	<!-- 导航条 -->
-	<div class="navbar">
-		<div class="navbar-main clearfix">
-			<!-- 品牌 -->
-			<div class="navbar-brand clearfix">
-				<a href="#" title="新世界">
-					<div class="navbar-logo">
-						<img src="images/logo_top.png" alt="新世界">
-						<div class="navbar-logo-text font-HT">新世界</div>
-					</div>
+	<div class="navbar clearfix" id="top">
+		<!-- 品牌 -->
+		<div class="navbar-brand">
+			<a href="#" title="新世界">
+				<img src="images/logo_top.png" alt="新世界">
+				<span class="navbar-logo-text font-HT">新世界</span>
+			</a>
+		</div>
+		<!-- 导航 -->
+		<div class="navbar-nav clearfix">
+			<ul>
+				<a href="#" title="首页">
+					<li class="li-selected">
+						<span>首页</span>
+					</li>
 				</a>
-			</div>
-			<!-- 导航 -->
-			<div class="navbar-nav clearfix">
-				<ul>
-					<a href="#" title="首页">
-						<li class="li-selected">
-							<span>首页</span>
-							<div class="li-selected-underline"><!-- 底部红线 --></div>
-						</li>
-					</a>
-					<a href="#" title="最新活动">
-						<li>
-							<span>最新活动</span>
-							<div class="li-select-underline"><!-- 底部红线 --></div>
-						</li>
-					</a>
-					<a href="#" title="项目介绍">
-						<li>
-							<span>项目介绍</span>
-							<div class="li-select-underline"><!-- 底部红线 --></div>
-						</li>
-					</a>
-					<a href="#" title="爱心社区">
-						<li>
-							<span>爱心社区</span>
-							<div class="li-select-underline"><!-- 底部红线 --></div>
-						</li>
-					</a>
-					<a href="#" title="关于我们">
-						<li>
-							<span>关于我们</span>
-							<div class="li-select-underline"><!-- 底部红线 --></div>
-						</li>
-					</a>
-				</ul>
-			</div>
-			<!-- 登陆 -->
-			<div class="navbar-login clearfix">
+				<a href="#" title="最新活动">
+					<li>
+						<span>最新活动</span>
+					</li>
+				</a>
+				<a href="#" title="项目介绍">
+					<li>
+						<span>项目介绍</span>
+					</li>
+				</a>
+				<a href="#" title="爱心社区">
+					<li>
+						<span>爱心社区</span>
+					</li>
+				</a>
+				<a href="#" title="关于我们">
+					<li>
+						<span>关于我们</span>
+					</li>
+				</a>
 				<a href="#" title="登陆">
-					<img src="images/login.png" alt="登陆">
-					<span class="navbar-login-text font-MSYH">登陆</span>
+					<li class="navbar-login">
+						<img src="images/login.png" alt="登陆">
+						<span class="font-MSYH">登陆</span>
+					</li>
 				</a>
-			</div>
+			</ul>
 		</div>
 	</div>
 	<!-- 主体大图 -->
@@ -69,10 +59,8 @@
 		<div class="mainfoucs-text">
 			<h1>Time of new life</h1>
 			<h3>新时代，年轻的人们让我们一起<br/>体验新生活，享受新生活</h3>
+			<a class="mainfocus-btn btn-hover" href="#" title="点击开始体验">开始体验</a>
 		</div>
-		<a class="mainfocus-btn" href="#" title="点击开始体验">
-			<span>开始体验</span>
-		</a>
 	</div>
 	<!-- 品牌特点 -->
 	<div class="featuretags">
@@ -109,35 +97,41 @@
 			<span>每个城市的有不同的活动信息，请自主查询您所需要了解的城市</span>
 		</div>
 		<form class="explore-map-address" action="#">
-			<input type="text" name="country" placeholder="中国" class="country-input">
-			<!-- 国家选择列表 -->
-			<ul class="country-ul">
-				<li>中国</li>
-				<li>美国</li>
-				<li>英国</li>
-			</ul>
-			<input type="text" name="province" placeholder="省份" class="province-input">
-			<!-- 省份选择列表 -->
-			<ul class="province-ul">
-				<li>北京市</li>
-				<li>天津市</li>
-				<li>河北省</li>
-				<li>陕西省</li>
-				<li>内蒙古自治区</li>
-				<li>辽宁省</li>
-			</ul>
-			<input type="text" name="city" placeholder="城市" class="city-input">
-			<!-- 城市选择列表 -->
-			<ul class="city-ul">
-				<li>广州</li>
-				<li>北京</li>
-				<li>深圳</li>
-				<li>武汉</li>
-				<li>上海</li>
-			</ul>
-			<button type="submit">
-				<pre>搜      索</pre>
-			</button>
+			<div>
+				<input type="text" name="country" placeholder="中国" class="country-input">
+				<!-- 国家选择列表 -->
+				<ul class="country-ul">
+					<li>中国</li>
+					<li>美国</li>
+					<li>英国</li>
+				</ul>
+			</div>
+			<div>
+				<input type="text" name="province" placeholder="省份" class="province-input">
+				<!-- 省份选择列表 -->
+				<ul class="province-ul">
+					<li>北京市</li>
+					<li>天津市</li>
+					<li>河北省</li>
+					<li>陕西省</li>
+					<li>内蒙古自治区</li>
+					<li>辽宁省</li>
+				</ul>
+			</div>
+			<div>
+				<input type="text" name="city" placeholder="城市" class="city-input">
+				<!-- 城市选择列表 -->
+				<ul class="city-ul">
+					<li>广州</li>
+					<li>北京</li>
+					<li>深圳</li>
+					<li>武汉</li>
+					<li>上海</li>
+				</ul>
+			</div>
+			<div>
+				<button type="submit" class="btn-hover">搜 索</button>
+			</div>
 		</form>
 	</div>
 	<!-- 各地活动 -->
@@ -152,9 +146,7 @@
 			</li>
 			<li>
 				<div class="act-text-style-2">
-					<h2>
-						<pre>上    海    活    动</pre>
-					</h2>
+					<h2>上 海 活 动</h2>
 					<h3>新社区大联盟</h3>
 				</div>
 				<img src="images/art_2.png" alt="活动二">
@@ -177,13 +169,20 @@
 	</div>
 	<!-- 团队介绍 -->
 	<div class="team clearfix">
-		<div class="team-img"></div>
+		<div class="team-img">
+            <h2>新世界</h2>
+            <h1>TIME</h1>
+            <p>@新世界 - 北京</p>
+            <p>2016.04.01</p>
+            <!-- 三角箭头 -->
+            <div class="triangle"></div>
+		</div>
 		<div class="team-desc">
 			<h2>新世界</h2>
 			<span>/</span>
 			<h2 class="team-right-h2">01</h2>
 			<p>新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界</p>
-			<button type="button" class="font-MSYH">更多详情</button>
+			<button type="button" class="font-MSYH btn-hover">更多详情</button>
 			<!-- 小圆点 -->
 			<ul class="clearfix">
 				<li class="actived-li"></li>
@@ -197,18 +196,18 @@
 		<div class="team-life-left">
 			<h2>新时代<br/>关于爱生活的我们</h2>
 			<div class="width-change"><!-- 横线 --></div>
-			<button type="button" class="font-HT">查看更多</button>
+			<button type="button" class="font-HT btn-hover">查看更多</button>
 		</div>
 		<div class="team-life-center">
 			<h2>新时代<br/>关于爱生活的我们</h2>
 			<div class="width-change"><!-- 横线 --></div>
-			<button type="button" class="font-HT">查看更多</button>
+			<button type="button" class="font-HT btn-hover">查看更多</button>
 		</div>
 		<div class="team-life-right">
 			<!-- 遮罩 -->
 			<div class="team-life-right-mask"></div>
 			<!-- 三角箭头 -->
-			<div class="right-arrow"></div>
+			<div class="triangle"></div>
 			<img src="images/life.png" alt="team">
 		</div>
 	</div>
@@ -244,7 +243,7 @@
 			<input class="sex" placeholder="职业：" name="sex">
 			<input class="addr" placeholder="地址：" name="addr">
 			<textarea name="text" placeholder="请简单描述您梦想的生活：" class="font-MSYH"></textarea>
-			<button type="submit" class="font-HT">提交申请</button>
+			<button type="submit" class="font-HT btn-hover">提交申请</button>
 		</form>
 	</div>
 	<!-- 底部 -->
@@ -254,7 +253,7 @@
 			<p class="font-ST">为了更好的获取我们最新的产品资讯，您可以留下您的电子邮箱快速订阅我们的产品资讯<br/>也可以通过以下任何方式关注我们动态</p>
 			<form action="#" class="clearfix">
 				<input type="text" placeholder="someone@email.com" class="input-email font-MSYH">
-				<input type="submit" class="input-submit font-MSYH" value="提 交">
+				<input type="submit" class="input-submit font-MSYH btn-hover" value="提 交">
 			</form>
 			<ul>
 				<li>
@@ -281,7 +280,7 @@
 		</div>
 		<div class="copyright">
 			<p class="copyright-left">&copy;2016新世界</p>
-			<span class="back-to-top">Back to top</span>
+			<a class="back-to-top" href="#top">Back to top</a>
 		</div>
 	</div>
 </body>
