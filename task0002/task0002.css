@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #dedede;
+}
+.header{
+    height: 60px;
+    background-color: #333;
+}
+.header a{
+    color: #fff;
+    text-decoration:none;
+}
+.header img{
+    margin-top:10px;
+    margin-left: 40px;
+    width:120px;
+    height: 40px;
+}
