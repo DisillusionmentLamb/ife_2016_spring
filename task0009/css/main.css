@@ -214,3 +214,321 @@ aside .user-info {
 .content-header > ul > li:last-child:after {
 	content: "";
 }
+
+/* 主要内容部分 */
+
+.main-content {
+	padding: 20px 60px;
+	display: flex;
+	flex-flow: row wrap;
+	margin: 0;
+	height: 100%;
+}
+
+/* 搜索框部分 */
+
+.main-content .search-warpper {
+	height: 100px;
+	padding: 20px;
+	background: #fff;
+	font-size: .85rem;
+	box-shadow: 0 0 5px #aaa;
+}
+
+.search-query,.buy-sell,.search-content {
+	float: left;
+	margin-left: 15px;
+}
+
+.search-warpper label {
+	padding-left: 10px;
+	padding-right: 5px;
+	color: #aaa;
+}
+
+.search-warpper .mySelect {
+	display: inline-block;
+	position: relative;
+	padding: 5px;
+}
+
+.mySelect .selected {
+	color: #333;
+	border: 1px solid #aaa;
+	padding: 0 3px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.mySelect .selected i {
+	float: right;
+	margin-top: 4px;
+}
+
+.mySelect .selectList {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	box-shadow: 0 0 5px #aaa;
+	background: #fff;
+}
+
+.selectList .option {
+	height: 25px;
+	line-height: 25px;
+	padding: 0 3px;
+}
+.selectList .option:hover {
+	background: #aaa;
+}
+
+.mySelect:hover .selected:hover + .selectList {
+	display: block;
+}
+
+.mySelect:hover .selectList:hover {
+	display: block;
+}
+
+.mySelect:hover .select:focus {
+	display: none;
+}
+
+.search-warpper .search-query {
+	width: 160px;
+}
+
+.search-query .selected,.selectList {
+	width: 65px;
+}
+
+.search-warpper .buy-sell {
+	width: 250px;
+	position: relative;
+}
+
+.buy-sell .selected {
+	width: 130px;
+}
+
+.buy-sell .selectList {
+	width: 130px;
+}
+
+.buy-sell .change {
+	display: inline-block;
+	position: absolute;
+	top: 18px;
+	right: 35px;
+	background: url(../image/change.png) no-repeat 0 center;
+	height: 37px;
+	width: 29px;
+	padding: 10px 0 0 13px;
+	color: #fff;
+}
+
+.search-warpper .search-content {
+	width: 340px;
+	position: relative;
+}
+
+.search-content .search-date .selected{
+	width: 110px;
+}
+
+.search-content .search-time .selected {
+	width: 60px;
+}
+
+.search-content .search-time .selectList {
+	width: 60px;
+}
+
+.search-content .search-counter .selected {
+	width: 85px
+}
+
+.search-content .search-counter .selectList {
+	width: 85px
+}
+
+.search-content .search-deals .selected {
+	width: 85px
+}
+
+.search-content .search-deals .selectList {
+	width: 85px
+}
+
+.search-warpper .search-btn {
+	display: inline-block;
+	height: 28px;
+	width: 60px;
+	line-height: 28px;
+	background: #2189bf;
+	color: #fff;
+	text-align: center;
+	margin-top: 20px;
+	margin-right: 5px;
+}
+
+/* 历史价格部分 */
+
+.main-content .history {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	margin-top: 20px;
+}
+
+.history [class*='flex-'] {
+	background: #fff;
+	margin-right: 10px;
+	box-shadow: 0 0 5px #ababab;
+}
+
+.history .flex-1 {
+	flex: 1;
+}
+
+.history .flex-2 {
+	flex: 4;
+}
+
+.history .nav {
+	line-height: 80px;
+	text-align: center;
+	color: #aaa;
+}
+
+.history .time-line {
+	text-align: center;
+	border-top: 5px solid #fff;
+}
+
+.time-line .history-time {
+	line-height: 40px;
+	font-size: .85rem;
+}
+
+.time-line .history-price {
+	color: #aaa;
+}
+
+.time-line .history-price span {
+	color: #ed7326;
+	font-size: 1.25rem;
+	margin-left: -2px;
+}
+
+.history .time-line.selected, .history .time-line:hover {
+	border-top: 5px solid #2189bf;
+}
+
+.history .history-search {
+	text-align: center;
+}
+
+.history-search i {
+	line-height: 80px;
+	font-size: 1.5rem;
+	color: #2189bf;
+}
+
+.history-search span {
+	font-size: .85rem;
+}
+
+.history [class*='flex-']:last-child {
+	margin-right: 0;
+}
+
+/* 统计部分 */
+
+.main-content .statics {
+	width: 100%;
+	margin-top: 20px;
+	font-size: .85rem;
+}
+
+.statics h3 {
+	font-weight: normal;
+}
+
+.statics .statics-content {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	padding-top: 10px;
+}
+
+.statics-content .flex-3 {
+	flex: 1;
+}
+
+.statics-content [class*='flex-'] {
+	margin-right: 25px;
+	background: #fff;
+	box-shadow: 0 0 5px #ababab;
+	border-left: 5px solid;
+}
+
+.statics-content [class*='flex-']:last-child {
+	margin-right: 0;
+}
+
+.statics-content .deal-count {
+	float: left;
+	padding: 10px 15px;
+}
+
+.statics-content .deal-count p:first-child {
+	line-height: 30px;
+}
+
+.statics-content .deal-count p:last-child {
+	color: #aaa;
+}
+
+.statics-content .deal-block {
+	float: right;
+	margin-right: 12px;
+	margin-top: 10px;
+	width: 60px;
+	height: 45px;
+}
+
+.statics-content .green {
+	border-color: #44b29e;
+}
+
+.statics-content .green .deal-block {
+	background: #44b29e;
+}
+
+.statics-content .blue {
+	border-color: #388ac1;
+}
+
+.statics-content .blue .deal-block {
+	background: #388ac1;
+}
+
+.statics-content .red {
+	border-color: #d04a36;
+}
+
+.statics-content .red .deal-block {
+	background: #d04a36;
+}
+
+.statics-content .yellow {
+	border-color: #e2cd46;
+}
+
+.statics-content .yellow .deal-block {
+	background: #e2cd46;
+}
+
+/* 工程信息部分 */
+
