@@ -59,6 +59,11 @@ header .search-bar {
 	background: #fff;
 	border-radius: 20px;
 	padding-left: 50px;
+	transition: width .2s;
+}
+
+.search-bar input:focus {
+	width: 350px;
 }
 
 .search-bar i {
@@ -250,6 +255,7 @@ aside .user-info {
 	display: inline-block;
 	position: relative;
 	padding: 5px;
+	cursor: pointer;
 }
 
 .mySelect .selected {
@@ -271,6 +277,7 @@ aside .user-info {
 	z-index: 2;
 	box-shadow: 0 0 5px #aaa;
 	background: #fff;
+	cursor: pointer;
 }
 
 .selectList .option {
@@ -536,7 +543,6 @@ aside .user-info {
 	display: flex;
 	margin-top: 30px;
 	width: 100%;
-	height: 360px;
 	font-size: .85rem;
 }
 
@@ -726,14 +732,23 @@ aside .user-info {
 	border-radius: 3px;
 	border: none;
 	line-height: 2;
+	margin-top: 5px;
 }
 
 /* 左侧日历部分 */
+
+.others {
+	margin-bottom: 70px;
+}
 
 .others .calendar {
 	padding: 5px 10px;
 	display: inline-block;
 	width: 100%;
+}
+
+.others .mySelect {
+	cursor: pointer;
 }
 
 .others .calendar li {
@@ -885,4 +900,12 @@ aside .user-info {
 .top-cars .hot-inner.inner-35 {
 	background: #7ecaf0;
 	width: 35%;
+}
+
+.top-cars tr:hover {
+	background: #ededf0;
+}
+
+.top-cars tr:first-child {
+	background: #fff;
 }
