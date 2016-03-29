@@ -532,3 +532,357 @@ aside .user-info {
 
 /* 工程信息部分 */
 
+.main-content .projects {
+	display: flex;
+	margin-top: 30px;
+	width: 100%;
+	height: 360px;
+	font-size: .85rem;
+}
+
+.projects [class*='flex-'] {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #aaa;
+	overflow: hidden;
+}
+
+.projects .flex-6 {
+	flex: 6;
+}
+
+.projects .flex-4 {
+	flex: 4;
+}
+
+.projects .table-title {
+	height: 40px;
+	line-height: 40px;
+	background: #f4f6f7;
+	padding-left: 20px;
+}
+
+/* 左侧项目表格部分 */
+
+.projects .projects-overview {
+	margin-right: 10px;
+}
+
+.projects-overview .projects-item {
+	position: relative;
+	padding: 10px 20px;
+}
+
+.projects-item ul li {
+	display: inline-block;
+	position: relative;
+	width: 70px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.projects-item ul li input {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	z-index: 2;
+}
+
+.projects-item ul li span {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #ededf0;
+	border-radius: 5px;
+	z-index: 1;
+}
+
+.projects-item ul li input:checked + span {
+	background: #fff;
+	border: 1px solid #aaa;
+	border-bottom: 1px solid #fff;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.projects-item ul li .tab {
+	display: none;
+	position: absolute;
+	width: 480px;
+	height: 250px;
+	top: 31px;
+	border: 1px solid #aaa;
+	z-index: 0;
+	padding: 40px;
+	border-radius: 0 10px 10px 10px;
+}
+
+.projects-item ul li .tab table {
+	width: 100%;
+	text-align: center;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.projects-item ul li .tab table td {
+	border: 1px solid #aaa;
+}
+
+.projects-item ul li .tab table .selected {
+	background: #ededf0;
+}
+
+.projects-item ul li .tab table td:hover {
+	background: #ededf0;
+}
+
+.projects-item ul li input:checked + span + .tab {
+	display: block;
+}
+
+
+/* 修正表格位置 */
+
+.projects-item ul li .tab.item2 {
+	margin-left: -74px;
+}
+
+.projects-item ul li .tab.item3 {
+	margin-left: -147px;
+}
+
+.projects-item ul li .tab.item4 {
+	margin-left: -221px;
+}
+
+.projects-item ul li .tab.item5 {
+	margin-left: -294px;
+}
+
+
+/* 右侧表格部分 */
+
+.projects-detail .detail-table {
+	padding: 20px 40px;
+	text-align: left;
+}
+
+.projects-detail .detail-table table {
+	width: 100%;
+}
+
+.projects-detail .detail-table table th {
+	font-weight: normal;
+}
+
+.projects-detail .detail-table table td,th {
+	padding: 5px 15px;
+}
+
+.projects-detail .detail-table table span {
+	display: block;
+	color: #aaa;
+	margin-bottom: 4px;
+}
+
+.projects-detail .detail-table table .price {
+	border: 1px solid #aaa;
+	border-left: none;
+	width: 35%;
+}
+
+.projects-detail .detail-table table .responsor {
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	margin-left: -2px;
+	position: relative;
+	left: -2px;
+}
+
+.projects-detail .detail-table table .area {
+	height: 150px;
+	vertical-align: top;
+	border-bottom: 1px solid #aaa;
+}
+
+.projects-detail .detail-table table .submit {
+	padding: 0;
+}
+
+.projects-detail .detail-table table .secret {
+	float: left;
+	padding-top: 10px;
+}
+
+.projects-detail .detail-table table .table-btn {
+	float: right;
+	width: 60px;
+	font-size: .75rem;
+	color: #fff;
+	background: #388ac1;
+	border-radius: 3px;
+	border: none;
+	line-height: 2;
+}
+
+/* 左侧日历部分 */
+
+.others .calendar {
+	padding: 5px 10px;
+	display: inline-block;
+	width: 100%;
+}
+
+.others .calendar li {
+	display: inline-block;
+	width: 24%;
+}
+
+.others .calendar li .selectList {
+	width: 80.625px;
+}
+
+.others .calendar li i {
+	border-left: 1px solid #aaa;
+	padding-left: 5px;
+	height: 100%;
+	color: #aaa;
+	padding-top: 4px;
+	margin: 0;
+}
+
+.others .calendar li:last-child .selected {
+	text-align: center;
+}
+
+.others .calendar-table {
+	padding: 5px 10px;
+	width: 90%;
+	text-align: center;
+	border-collapse: collapse;
+	margin: 10px auto;
+}
+
+.calendar-table td {
+	padding: 6px;
+}
+
+.calendar-table .week td {
+	border-top: 1px solid #388ac1;
+	border-bottom: 1px solid #aaa;
+	padding: 8px;
+}
+
+.calendar-table .fastival small{
+	color: #d04a36;
+}
+
+.calendar-table .weekend {
+	color: #d04a36;
+}
+
+.calendar-table .weekend small {
+	color: #333;
+}
+
+.calendar-table span {
+	display: block;
+	margin: 0 auto;
+	width: 38px;
+	padding: 1px;
+}
+
+.calendar-table .selected {
+	border: 1px solid #d04a36;
+}
+
+/* 汽车排名部分 */
+
+.projects .top-cars {
+	text-align: center;
+	width: 90%;
+	border-collapse: collapse;
+	margin: 15px auto;
+}
+
+.top-cars td {
+	border: 1px solid #aaa;
+	padding: 5px 0;
+}
+
+.top-cars .rank {
+	width: 20%;
+}
+
+.top-cars .name {
+	width: 20%;
+}
+
+.top-cars .hot-bar {
+	display: inline-block;
+	width: 150px;
+	height: 4px;
+	margin-left: 10px;
+	margin-bottom: 3px;
+	border-radius: 3px;
+	background: #dcdcdc;
+}
+
+.top-cars .hot-inner {
+	display: block;
+	height: 100%;
+	border-radius: 3px 0 0 3px;
+}
+
+.top-cars .hot-inner.inner-80 {
+	width: 80%;
+	background: #ed6e52;
+}
+
+.top-cars .hot-inner.inner-75 {
+	width: 75%;
+	background: #ef8150;
+}
+
+.top-cars .hot-inner.inner-70 {
+	width: 70%;
+	background: #f19e4f;
+}
+
+.top-cars .hot-inner.inner-65 {
+	background: #7ecaf0;
+	width: 65%;
+}
+
+.top-cars .hot-inner.inner-60 {
+	background: #7ecaf0;
+	width: 60%;
+}
+
+.top-cars .hot-inner.inner-55 {
+	background: #7ecaf0;
+	width: 55%;
+}
+
+.top-cars .hot-inner.inner-50 {
+	background: #7ecaf0;
+	width: 50%;
+}
+
+.top-cars .hot-inner.inner-45 {
+	background: #7ecaf0;
+	width: 45%;
+}
+
+.top-cars .hot-inner.inner-40 {
+	background: #7ecaf0;
+	width: 40%;
+}
+
+.top-cars .hot-inner.inner-35 {
+	background: #7ecaf0;
+	width: 35%;
+}
