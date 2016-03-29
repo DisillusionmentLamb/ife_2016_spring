@@ -1,0 +1,911 @@
+@import url("font-awesome.min.css");
+
+body {
+	height: 100%;
+	min-width: 768px;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+
+html, body, h1, h2, h3, p, ul, li, nav, footer, div {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+em {
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* header部分 */
+
+header {
+	width: 100%;
+	min-width: 1280px;
+	height: 55px;
+	background: #2189bf;
+}
+
+header .logo {
+	float: left;
+	margin: 10px 50px 0;
+}
+
+header .header-aside {
+	float: right;
+	color: #aaa;
+	margin-top: 12px;
+	margin-right: 80px;
+	line-height: 28px;
+}
+
+header .search-bar {
+	float: left;
+	position: relative;
+}
+
+.search-bar input {
+	width: 300px;
+	height: 28px;
+	border: none;
+	background: #fff;
+	border-radius: 20px;
+	padding-left: 50px;
+	transition: width .2s;
+}
+
+.search-bar input:focus {
+	width: 350px;
+}
+
+.search-bar i {
+	display: inline-block;
+	position: absolute;
+	z-index: 1;
+	left: 15px;
+	top: 7px;
+}
+
+.login {
+	display: inline-block;
+	color: #fff;
+	margin-top: 1px;
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+/* 页面内容部分 */
+
+.content-warpper {
+	position: relative;
+	display: flex;
+	width: 1280px;
+	margin: 0 auto;
+}
+
+/* 侧边栏部分 */
+
+aside {
+	flex: 0 0 260px;
+	background: #2a2e3d;
+	font-size: 0.85rem;
+}
+
+aside section {
+	width: 100%;
+}
+
+aside .user-info {
+	height: 150px;
+	padding: 15px 65px;
+}
+
+.user-info .user-img-name {
+	margin-bottom: 18px;
+}
+
+.user-info .user-img-warpper {
+	float: left;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #bababe;
+	border-radius: 50%;
+}
+
+.user-info .user-img {
+	width: 80%;
+	height: 80%;
+	margin: 6px;
+	background: #bababe;
+	border-radius: 50%;
+}
+
+.user-info .user-name {
+	line-height: 60px;
+	margin-left: 100px;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.pages-info ul {
+	display: inline-block;
+	list-style: none;
+}
+
+.pages-info ul li {
+	display: inline-block;
+	box-sizing: content-box;
+	width: 40px;
+	padding: 0 10px;
+	text-align: center;
+	color: #576477;
+}
+
+.pages-info ul li:first-child {
+	border-right: 1px solid #576477;
+}
+
+.menu ul {
+	list-style: none;
+}
+
+.menu a {
+	color: #576477;
+}
+
+.menu .main {
+	padding: 0 45px;
+	line-height: 40px;
+}
+
+.menu .main.selected, .menu .main:hover {
+	background: #383d4e;
+}
+
+.selected .menu-item, .main:hover > a, .second.selected > a, .second:hover > a, .third:hover {
+	color: #fff;
+}
+
+.drop-down li {
+	padding: 0 25px;
+}
+
+
+/* 主要内容部分 */
+
+.content {
+	flex: 0 0 1020px;
+	background: #eeeded;
+}
+
+/* 主要内容导航栏部分 */
+
+.content-header {
+	background: #fff;
+	padding: 0 20px;
+}
+
+.content-header ul {
+	display: inline-block;
+}
+
+.content-header li {
+	list-style: none;
+	display: inline-block;
+	float: left;
+	line-height: 30px;
+	height: 30px;
+	font-size: .85rem;
+	color: #aaa;
+}
+
+.content-header li:after {
+	content: "/";
+	padding: 0 10px;
+}
+
+.content-header > ul > li:last-child {
+	color: #2189bf;
+}
+
+.content-header > ul > li:last-child:after {
+	content: "";
+}
+
+/* 主要内容部分 */
+
+.main-content {
+	padding: 20px 60px;
+	display: flex;
+	flex-flow: row wrap;
+	margin: 0;
+	height: 100%;
+}
+
+/* 搜索框部分 */
+
+.main-content .search-warpper {
+	height: 100px;
+	padding: 20px;
+	background: #fff;
+	font-size: .85rem;
+	box-shadow: 0 0 5px #aaa;
+}
+
+.search-query,.buy-sell,.search-content {
+	float: left;
+	margin-left: 15px;
+}
+
+.search-warpper label {
+	padding-left: 10px;
+	padding-right: 5px;
+	color: #aaa;
+}
+
+.search-warpper .mySelect {
+	display: inline-block;
+	position: relative;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.mySelect .selected {
+	color: #333;
+	border: 1px solid #aaa;
+	padding: 0 3px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.mySelect .selected i {
+	float: right;
+	margin-top: 4px;
+}
+
+.mySelect .selectList {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	box-shadow: 0 0 5px #aaa;
+	background: #fff;
+	cursor: pointer;
+}
+
+.selectList .option {
+	height: 25px;
+	line-height: 25px;
+	padding: 0 3px;
+}
+.selectList .option:hover {
+	background: #aaa;
+}
+
+.mySelect:hover .selected:hover + .selectList {
+	display: block;
+}
+
+.mySelect:hover .selectList:hover {
+	display: block;
+}
+
+.mySelect:hover .select:focus {
+	display: none;
+}
+
+.search-warpper .search-query {
+	width: 160px;
+}
+
+.search-query .selected,.selectList {
+	width: 65px;
+}
+
+.search-warpper .buy-sell {
+	width: 250px;
+	position: relative;
+}
+
+.buy-sell .selected {
+	width: 130px;
+}
+
+.buy-sell .selectList {
+	width: 130px;
+}
+
+.buy-sell .change {
+	display: inline-block;
+	position: absolute;
+	top: 18px;
+	right: 35px;
+	background: url(../image/change.png) no-repeat 0 center;
+	height: 37px;
+	width: 29px;
+	padding: 10px 0 0 13px;
+	color: #fff;
+}
+
+.search-warpper .search-content {
+	width: 340px;
+	position: relative;
+}
+
+.search-content .search-date .selected{
+	width: 110px;
+}
+
+.search-content .search-time .selected {
+	width: 60px;
+}
+
+.search-content .search-time .selectList {
+	width: 60px;
+}
+
+.search-content .search-counter .selected {
+	width: 85px
+}
+
+.search-content .search-counter .selectList {
+	width: 85px
+}
+
+.search-content .search-deals .selected {
+	width: 85px
+}
+
+.search-content .search-deals .selectList {
+	width: 85px
+}
+
+.search-warpper .search-btn {
+	display: inline-block;
+	height: 28px;
+	width: 60px;
+	line-height: 28px;
+	background: #2189bf;
+	color: #fff;
+	text-align: center;
+	margin-top: 20px;
+	margin-right: 5px;
+}
+
+/* 历史价格部分 */
+
+.main-content .history {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	margin-top: 20px;
+}
+
+.history [class*='flex-'] {
+	background: #fff;
+	margin-right: 10px;
+	box-shadow: 0 0 5px #ababab;
+}
+
+.history .flex-1 {
+	flex: 1;
+}
+
+.history .flex-2 {
+	flex: 4;
+}
+
+.history .nav {
+	line-height: 80px;
+	text-align: center;
+	color: #aaa;
+}
+
+.history .time-line {
+	text-align: center;
+	border-top: 5px solid #fff;
+}
+
+.time-line .history-time {
+	line-height: 40px;
+	font-size: .85rem;
+}
+
+.time-line .history-price {
+	color: #aaa;
+}
+
+.time-line .history-price span {
+	color: #ed7326;
+	font-size: 1.25rem;
+	margin-left: -2px;
+}
+
+.history .time-line.selected, .history .time-line:hover {
+	border-top: 5px solid #2189bf;
+}
+
+.history .history-search {
+	text-align: center;
+}
+
+.history-search i {
+	line-height: 80px;
+	font-size: 1.5rem;
+	color: #2189bf;
+}
+
+.history-search span {
+	font-size: .85rem;
+}
+
+.history [class*='flex-']:last-child {
+	margin-right: 0;
+}
+
+/* 统计部分 */
+
+.main-content .statics {
+	width: 100%;
+	margin-top: 20px;
+	font-size: .85rem;
+}
+
+.statics h3 {
+	font-weight: normal;
+}
+
+.statics .statics-content {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	padding-top: 10px;
+}
+
+.statics-content .flex-3 {
+	flex: 1;
+}
+
+.statics-content [class*='flex-'] {
+	margin-right: 25px;
+	background: #fff;
+	box-shadow: 0 0 5px #ababab;
+	border-left: 5px solid;
+}
+
+.statics-content [class*='flex-']:last-child {
+	margin-right: 0;
+}
+
+.statics-content .deal-count {
+	float: left;
+	padding: 10px 15px;
+}
+
+.statics-content .deal-count p:first-child {
+	line-height: 30px;
+}
+
+.statics-content .deal-count p:last-child {
+	color: #aaa;
+}
+
+.statics-content .deal-block {
+	float: right;
+	margin-right: 12px;
+	margin-top: 10px;
+	width: 60px;
+	height: 45px;
+}
+
+.statics-content .green {
+	border-color: #44b29e;
+}
+
+.statics-content .green .deal-block {
+	background: #44b29e;
+}
+
+.statics-content .blue {
+	border-color: #388ac1;
+}
+
+.statics-content .blue .deal-block {
+	background: #388ac1;
+}
+
+.statics-content .red {
+	border-color: #d04a36;
+}
+
+.statics-content .red .deal-block {
+	background: #d04a36;
+}
+
+.statics-content .yellow {
+	border-color: #e2cd46;
+}
+
+.statics-content .yellow .deal-block {
+	background: #e2cd46;
+}
+
+/* 工程信息部分 */
+
+.main-content .projects {
+	display: flex;
+	margin-top: 30px;
+	width: 100%;
+	font-size: .85rem;
+}
+
+.projects [class*='flex-'] {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #aaa;
+	overflow: hidden;
+}
+
+.projects .flex-6 {
+	flex: 6;
+}
+
+.projects .flex-4 {
+	flex: 4;
+}
+
+.projects .table-title {
+	height: 40px;
+	line-height: 40px;
+	background: #f4f6f7;
+	padding-left: 20px;
+}
+
+/* 左侧项目表格部分 */
+
+.projects .projects-overview {
+	margin-right: 10px;
+}
+
+.projects-overview .projects-item {
+	position: relative;
+	padding: 10px 20px;
+}
+
+.projects-item ul li {
+	display: inline-block;
+	position: relative;
+	width: 70px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.projects-item ul li input {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	z-index: 2;
+}
+
+.projects-item ul li span {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #ededf0;
+	border-radius: 5px;
+	z-index: 1;
+}
+
+.projects-item ul li input:checked + span {
+	background: #fff;
+	border: 1px solid #aaa;
+	border-bottom: 1px solid #fff;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.projects-item ul li .tab {
+	display: none;
+	position: absolute;
+	width: 480px;
+	height: 250px;
+	top: 31px;
+	border: 1px solid #aaa;
+	z-index: 0;
+	padding: 40px;
+	border-radius: 0 10px 10px 10px;
+}
+
+.projects-item ul li .tab table {
+	width: 100%;
+	text-align: center;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.projects-item ul li .tab table td {
+	border: 1px solid #aaa;
+}
+
+.projects-item ul li .tab table .selected {
+	background: #ededf0;
+}
+
+.projects-item ul li .tab table td:hover {
+	background: #ededf0;
+}
+
+.projects-item ul li input:checked + span + .tab {
+	display: block;
+}
+
+
+/* 修正表格位置 */
+
+.projects-item ul li .tab.item2 {
+	margin-left: -74px;
+}
+
+.projects-item ul li .tab.item3 {
+	margin-left: -147px;
+}
+
+.projects-item ul li .tab.item4 {
+	margin-left: -221px;
+}
+
+.projects-item ul li .tab.item5 {
+	margin-left: -294px;
+}
+
+
+/* 右侧表格部分 */
+
+.projects-detail .detail-table {
+	padding: 20px 40px;
+	text-align: left;
+}
+
+.projects-detail .detail-table table {
+	width: 100%;
+}
+
+.projects-detail .detail-table table th {
+	font-weight: normal;
+}
+
+.projects-detail .detail-table table td,th {
+	padding: 5px 15px;
+}
+
+.projects-detail .detail-table table span {
+	display: block;
+	color: #aaa;
+	margin-bottom: 4px;
+}
+
+.projects-detail .detail-table table .price {
+	border: 1px solid #aaa;
+	border-left: none;
+	width: 35%;
+}
+
+.projects-detail .detail-table table .responsor {
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	margin-left: -2px;
+	position: relative;
+	left: -2px;
+}
+
+.projects-detail .detail-table table .area {
+	height: 150px;
+	vertical-align: top;
+	border-bottom: 1px solid #aaa;
+}
+
+.projects-detail .detail-table table .submit {
+	padding: 0;
+}
+
+.projects-detail .detail-table table .secret {
+	float: left;
+	padding-top: 10px;
+}
+
+.projects-detail .detail-table table .table-btn {
+	float: right;
+	width: 60px;
+	font-size: .75rem;
+	color: #fff;
+	background: #388ac1;
+	border-radius: 3px;
+	border: none;
+	line-height: 2;
+	margin-top: 5px;
+}
+
+/* 左侧日历部分 */
+
+.others {
+	margin-bottom: 70px;
+}
+
+.others .calendar {
+	padding: 5px 10px;
+	display: inline-block;
+	width: 100%;
+}
+
+.others .mySelect {
+	cursor: pointer;
+}
+
+.others .calendar li {
+	display: inline-block;
+	width: 24%;
+}
+
+.others .calendar li .selectList {
+	width: 80.625px;
+}
+
+.others .calendar li i {
+	border-left: 1px solid #aaa;
+	padding-left: 5px;
+	height: 100%;
+	color: #aaa;
+	padding-top: 4px;
+	margin: 0;
+}
+
+.others .calendar li:last-child .selected {
+	text-align: center;
+}
+
+.others .calendar-table {
+	padding: 5px 10px;
+	width: 90%;
+	text-align: center;
+	border-collapse: collapse;
+	margin: 10px auto;
+}
+
+.calendar-table td {
+	padding: 6px;
+}
+
+.calendar-table .week td {
+	border-top: 1px solid #388ac1;
+	border-bottom: 1px solid #aaa;
+	padding: 8px;
+}
+
+.calendar-table .fastival small{
+	color: #d04a36;
+}
+
+.calendar-table .weekend {
+	color: #d04a36;
+}
+
+.calendar-table .weekend small {
+	color: #333;
+}
+
+.calendar-table span {
+	display: block;
+	margin: 0 auto;
+	width: 38px;
+	padding: 1px;
+}
+
+.calendar-table .selected {
+	border: 1px solid #d04a36;
+}
+
+/* 汽车排名部分 */
+
+.projects .top-cars {
+	text-align: center;
+	width: 90%;
+	border-collapse: collapse;
+	margin: 15px auto;
+}
+
+.top-cars td {
+	border: 1px solid #aaa;
+	padding: 5px 0;
+}
+
+.top-cars .rank {
+	width: 20%;
+}
+
+.top-cars .name {
+	width: 20%;
+}
+
+.top-cars .hot-bar {
+	display: inline-block;
+	width: 150px;
+	height: 4px;
+	margin-left: 10px;
+	margin-bottom: 3px;
+	border-radius: 3px;
+	background: #dcdcdc;
+}
+
+.top-cars .hot-inner {
+	display: block;
+	height: 100%;
+	border-radius: 3px 0 0 3px;
+}
+
+.top-cars .hot-inner.inner-80 {
+	width: 80%;
+	background: #ed6e52;
+}
+
+.top-cars .hot-inner.inner-75 {
+	width: 75%;
+	background: #ef8150;
+}
+
+.top-cars .hot-inner.inner-70 {
+	width: 70%;
+	background: #f19e4f;
+}
+
+.top-cars .hot-inner.inner-65 {
+	background: #7ecaf0;
+	width: 65%;
+}
+
+.top-cars .hot-inner.inner-60 {
+	background: #7ecaf0;
+	width: 60%;
+}
+
+.top-cars .hot-inner.inner-55 {
+	background: #7ecaf0;
+	width: 55%;
+}
+
+.top-cars .hot-inner.inner-50 {
+	background: #7ecaf0;
+	width: 50%;
+}
+
+.top-cars .hot-inner.inner-45 {
+	background: #7ecaf0;
+	width: 45%;
+}
+
+.top-cars .hot-inner.inner-40 {
+	background: #7ecaf0;
+	width: 40%;
+}
+
+.top-cars .hot-inner.inner-35 {
+	background: #7ecaf0;
+	width: 35%;
+}
+
+.top-cars tr:hover {
+	background: #ededf0;
+}
+
+.top-cars tr:first-child {
+	background: #fff;
+}
