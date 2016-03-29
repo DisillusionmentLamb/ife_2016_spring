@@ -70,3 +70,25 @@ span{
 	.float-col-sm-8  { width: 66.666667%; }
 	.float-col-sm-12 { width: 100%; }
 }
+.flex-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+[class*="flex-col-"]{
+    box-sizing: border-box;
+    padding: 10px;
+}
+.flex-col-md-1  { flex-basis: 8.33333333%; }
+.flex-col-md-2  { flex-basis: 16.66666667%; }
+.flex-col-3  { flex-basis: 25%; }
+.flex-col-md-4  { flex-basis: 33.333333%; }
+.flex-col-6  { flex-basis: 50%; }
+.flex-col-md-8  { flex-basis: 66.666667%; }
+.flex-col-md-12 { flex-basis: 100%; }
+@media screen and (max-width:768px){
+    .flex-col-sm-2{flex-basis: 16.6666666%;}
+    .flex-col-sm-3{flex-basis: 25%;}
+    .flex-col-sm-6{flex-basis: 50%;}
+    .flex-col-sm-8{flex-basis: 66.6666%;}
+    .flex-col-sm-12{flex-basis: 100%;}
+}
