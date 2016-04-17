@@ -30,12 +30,15 @@ var commander = {
 		for (var i = 0; i < window.StarState.length; i++) {
 			window.StarState[i].receiveMediator(mediator);
 		}
+
+		console.log(mediator);
 	},
 
 	// 创建飞船
 	createStar : function () {
 		// 取最后一个飞船的id+1为新飞船id
-		var id = window.StarState[window.StarState.length - 1].id + 1;
+		// 之前没有飞船就id=1
+		var id = window.StarState.length > 0 ? window.StarState[window.StarState.length - 1].id + 1 : 1;
 
 		// 创建新飞船
 		var star = new Star(id);
@@ -45,6 +48,7 @@ var commander = {
 
 		// 更新指挥官假想飞船状态
 		commander.StarState.push(star);
+
 
 	},
 
