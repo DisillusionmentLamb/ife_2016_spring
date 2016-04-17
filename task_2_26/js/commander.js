@@ -5,28 +5,13 @@ var commander = {
 	StarState : [],
 
 	// 生成命令
-	createCommand : function (e) {
-
-		// 初始化命令
-		var mediator = {
-			id : 0,
-			command : ''
-		};
-
-		// 接管button点击事件
-		if (e.target && e.target.nodeName.toLowerCase() == 'button') {
-
-			// 读取button的class作为命令
-			mediator.command = e.target.getAttribute('class');
-
-			// 读取button外层div的id为飞船id
-			if (mediator.command != 'add') {
-				mediator.id = e.target.parentNode.getAttribute('id').split('-')[1];
-			}
-
-			// 发送命令
-			commander.sendCommand(mediator);
-		}
+	// @param id 目标行星id, commandStr 命令字符
+	createCommand : function (id, commandStr) {
+		// 返回包装对象
+		var mediator = {};
+		mediator.id = id;
+		mediator.command = commandStr;
+		sendCommand(mediator);
 	},
 
 	// 广播命令
@@ -61,8 +46,6 @@ var commander = {
 		// 更新指挥官假想飞船状态
 		commander.StarState.push(star);
 
-		// 重新渲染
-		render();
 	},
 
 	// 销毁飞船
