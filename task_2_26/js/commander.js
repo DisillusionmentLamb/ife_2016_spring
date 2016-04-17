@@ -45,6 +45,8 @@ var commander = {
 		for (var i = 0; i < window.StarState.length; i++) {
 			window.StarState[i].receiveMediator(mediator);
 		}
+
+		console.log(mediator);
 	},
 
 	// 创建飞船
