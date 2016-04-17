@@ -52,7 +52,8 @@ var commander = {
 	// 创建飞船
 	createStar : function () {
 		// 取最后一个飞船的id+1为新飞船id
-		var id = window.StarState[window.StarState.length - 1].id + 1;
+		// 之前没有飞船就id=1
+		var id = window.StarState.length > 0 ? window.StarState[window.StarState.length - 1].id + 1 : 1;
 
 		// 创建新飞船
 		var star = new Star(id);
@@ -65,6 +66,8 @@ var commander = {
 
 		// 重新渲染
 		render();
+
+		console.log('新建飞船' + id);
 	},
 
 	// 销毁飞船
