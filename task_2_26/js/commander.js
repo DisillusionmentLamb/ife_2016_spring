@@ -11,7 +11,7 @@ var commander = {
 		var mediator = {};
 		mediator.id = id;
 		mediator.command = commandStr;
-		sendCommand(mediator);
+		this.sendCommand(mediator);
 	},
 
 	// 广播命令
