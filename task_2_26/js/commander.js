@@ -18,11 +18,11 @@ var commander = {
 	sendCommand : function (mediator) {
 		// 命令是销毁时，更新假想飞船状态
 		if (mediator.command == 'destroy') {
-			commander.destroyStar(mediator.id);
+			this.destroyStar(mediator.id);
 			
 		// 命令是创建飞船时，不需要发送命令	
 		} else if (mediator.command == 'add') {
-			commander.createStar();
+			this.createStar();
 			return true;
 		}
 
@@ -31,7 +31,7 @@ var commander = {
 			window.StarState[i].receiveMediator(mediator);
 		}
 
-		console.log(mediator);
+		console.log('id:' + mediator.id + '----command:' + mediator.command);
 	},
 
 	// 创建飞船
@@ -47,7 +47,7 @@ var commander = {
 		window.StarState.push(star);
 
 		// 更新指挥官假想飞船状态
-		commander.StarState.push(star);
+		this.StarState.push(star);
 
 
 	},
@@ -56,10 +56,10 @@ var commander = {
 	destroyStar : function (id) {
 		// 只更新假想飞船状态
 		// 遍历找到id为传入id的飞船
-		for(var i = 0; i < commander.StarState.length; i++){
+		for(var i = 0; i < this.StarState.length; i++){
 			// 找到就删除, 退出遍历
-			if (commander.StarState[i].id == id) {
-				commander.StarState.splice(i, 1);
+			if (this.StarState[i].id == id) {
+				this.StarState.splice(i, 1);
 				break;
 			}
 		}

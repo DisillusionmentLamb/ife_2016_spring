@@ -44,14 +44,12 @@ Star.prototype = {
 	receiveMediator : function(mediator) {
 		var that = this;
 		// 通过确定随机数范围，模拟30%丢包率
-		(function(){
-			var randomNum = Math.random() * 10;
-			// 模拟丢包，不对接受的命令解析
-			if (randomNum > 7) {
-				console.log("命令接受失败");
-				return;
-			}
-		})();
+		var randomNum = Math.random() * 10;
+		// 模拟丢包，不对接受的命令解析
+		if (randomNum > 7) {
+			console.log("id:" + that.id + "----命令接受失败");
+			return;
+		}
 		// 模拟延时
 		setTimeout(function() {
 			// 判断指令id是否为自身
@@ -87,13 +85,13 @@ Star.prototype = {
 	 			// 飞船速度保持恒定
 	 			that.speed = 10;
 	 			that.setEnergy(that.getEnergy() - 4);
-	 			console.log("speed" + that.speed + "energy" + that.getEnergy());
+	 			console.log("id:" + that.id + "----speed:" + that.speed + ",energy:" + that.getEnergy());
 	 		}
 	 		else {
 	 			// 能源耗尽，停止飞行
 	 			that.speed = 0;
 	 			clearInterval(expendEnergyTimer);
-	 			console.log("stop")
+	 			console.log("id:" + that.id + "----stop")
 	 		}
 	 	}, 1000);
 	 },
@@ -107,6 +105,7 @@ Star.prototype = {
 	 		clearInterval(expendEnergyTimer);
 	 		this.speed = 0;
 	 		expendEnergyTimer = null;
+	 		console.log("id:" + this.id + "----stop")
 	 	}
 	 },
 
@@ -133,6 +132,7 @@ Star.prototype = {
 	 	if (index != -1){
 	 		StarState.splice(index, 1);
 	 	}
+	 	console.log("id:" + this.id + "----destory")
 	 }
 }
 
