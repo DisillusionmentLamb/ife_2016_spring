@@ -19,11 +19,6 @@ var commander = {
 		// 命令是销毁时，更新假想飞船状态
 		if (mediator.command == 'destroy') {
 			this.destroyStar(mediator.id);
-			
-		// 命令是创建飞船时，不需要发送命令	
-		} else if (mediator.command == 'add') {
-			this.createStar();
-			return true;
 		}
 
 		// 加密为二进制
@@ -41,14 +36,10 @@ var commander = {
 	},
 
 	// 创建飞船
-	createStar : function () {
+	createStar : function (energyType, speedType) {
 		// 取最后一个飞船的id+1为新飞船id
 		// 之前没有飞船就id=1
 		var id = window.StarState.length > 0 ? window.StarState[window.StarState.length - 1].id + 1 : 1;
-
-		// 取选择框的选项为能量与动力参数
-		var energyType = document.getElementById('energyType').value;
-		var speedType = document.getElementById('speedType').value;
 
 		// 创建新飞船
 		var star = new Star(id, energyType, speedType);

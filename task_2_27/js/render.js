@@ -12,8 +12,12 @@ var render = {
 	 */
 	timer : (function () {
 		var inter = setInterval(function () {
-			for(var i = 0; i < window.StarState.length; i++){
-				render.renderStar(window.StarState[i]);
+			// 直接读取commander的StarState
+			// 因为全局的StarState更新有延迟
+			// 反正命令会重试一定会成功
+			// 主要是延迟会出bug
+			for(var i = 0; i < commander.StarState.length; i++){
+				render.renderStar(commander.StarState[i]);
 			}
 		}, 1000);
 		return inter;

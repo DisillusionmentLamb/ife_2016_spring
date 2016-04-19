@@ -10,8 +10,13 @@ var controller = {
 			console.log("飞船数量达到上限！");
 			return;
 		}
+		
+		// 取选择框的选项为能量与动力参数
+		var energyType = document.getElementById('energyType').value;
+		var speedType = document.getElementById('speedType').value;
+
 		// 发送指令
-		commander.createCommand(0, "add");
+		commander.createStar(energyType, speedType);
 		// 更新指令处dom
 		var id = StarState[StarState.length - 1].id;
 		document.getElementById("btn").appendChild(render.createBtnHtml(id));
@@ -22,25 +27,12 @@ var controller = {
 	removeStarHandle : function(id) {
 		// 发送指令
 		commander.createCommand(id, "destroy");
-		// 判断指令是否接受成功
-		setTimeout(function() {
-			var success = (function(id) {
-			for (var i = 0; i < StarState.length; i++) {
-				if (id == StarState[i].id) {
-					return false;
-				}
-			}
-			return true;
-			})();
-			if (success) {
-				// 更新指令处dom
-				var removeBtn = document.getElementById("ctrl-" + id);
-				document.getElementById("btn").removeChild(removeBtn);
-				// 更新行星dom
-				var removeStar = document.getElementById("star-" + id);
-				document.getElementById("ship").removeChild(removeStar);
-			}
-		}, 1001);
+		// 不需要判断直接更新，反正命令一定成功
+		var removeBtn = document.getElementById("ctrl-" + id);
+		document.getElementById("btn").removeChild(removeBtn);
+		// 更新行星dom
+		var removeStar = document.getElementById("star-" + id);
+		document.getElementById("ship").removeChild(removeStar);
 	},
 	// 飞行指令触发动作
 	startHandle : function(id) {

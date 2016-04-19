@@ -4,46 +4,44 @@
  */
 function Star(id, energyId, speedId) {
 	this.id = id;
-	// 初始化速度为0
+	
+	// 目前速度,为0是停止，等于presetSpeed就是运行
 	this.speed = 0;
+	
+	// 设置的速度
+	this.presetSpeed = this.convertSpeed(speedId).speed;
+	
+	// 能量消耗速度
+	this.energyExpendSpeed = this.convertSpeed(speedId).expend;
+	
 	// 私有属性,初始化能源为100
 	var energy = 100;
+	
+	// 能量收集速度
+	var energyGatherSpeed = (function () {
+								var energyAll = [2, 3, 4];
+								return energyAll[energyId - 1];
+							})();
+	
 	// 初始化行星消耗能源定时器
 	this.expendEnergyTimer = null;
+	
 	// 初始化行星能源系统定时器
 	this.addEnergyTimer = null;
-	// 初始化动力系统id
-	this.speedId = speedId;	
-	// 初始化能源系统id
-	var energyId = energyId;
-	
+
 	/**
 	 *	私有方法
 	 *  实现飞船的能源系统
 	 */
 	(function() {
 		addEnergyTimer = setInterval(function(){
-			var energySystem = 0;
-			switch (energyId){
-				case 1:
-					energySystem = 2;
-					break;
-				case 2:
-					energySystem = 3;
-					break;
-				case 3:
-					energySystem = 4;
-					break;
-				}
 			// 判断飞船能源是否为满
 			if (energy < 100) {
-				// 飞船能源每秒增加
-				energy += energySystem;
+				// 飞船能源每秒增加energyGatherSpeed
+				energy += energyGatherSpeed;
+				// 恰巧超过100需要修正为100
+				energy = energy > 100 ? 100 : energy;
 				console.log("id:" + id + "---energy:" + energy);
-			}
-			else {
-				energy = 100;
-				console.log("id:" + id + "能源已满");
 			}
 		}, 1000);
 	})();
@@ -54,9 +52,6 @@ function Star(id, energyId, speedId) {
 	this.setEnergy = function(data) {
 		energy = data;
 	}
-	this.getSpeedSystem = function() {
-		return speedSystem;
-	}
 }
 
 Star.prototype = {
@@ -65,17 +60,20 @@ Star.prototype = {
 	   param (object) mediator
 	 */
 	receive : function(mediator) {
-		mediator = this.decode(mediator);
+		var mediator = this.decode(mediator);
 		var that = this;
 		// 通过确定随机数范围，模拟30%丢包率
 		var randomNum = Math.random() * 10;
 		// 模拟丢包，不对接受的命令解析
-		// 丢包率为90%，只是方便我测试
 		// 丢包并且id为本飞船时，返回false
 		// 否则返回true
-		if (randomNum > 9 && mediator.id == that.id) {
-			console.log("id:" + that.id + "----命令接受失败");
-			return false;
+		if (mediator.id == that.id) {
+			if (randomNum > 9) {
+				console.log("id:" + that.id + "----命令接受失败");
+				return false;
+			}
+		} else {
+			return true;
 		}
 		// 模拟延时
 		setTimeout(function() {
@@ -101,26 +99,24 @@ Star.prototype = {
 	 * 实现飞船的飞行状态
 	 */
 	 fly : function() {
-	 	var that = this,
-	 		speedSystem = that.convertSpeed(that.speedId);
+	 	var that = this;
 	 	
 	 	// 判断当前飞船是否运行
 	 	if (this.expendEnergyTimer != null) {
 	 		console.log("飞船已经运行！");
 	 		return;
 	 	}
-	 	// 消耗能源每秒减少4%;
+	 	// 消耗能源每秒减少energyExpendSpeed
 	 	this.expendEnergyTimer = setInterval(function(){
-	 		if (that.getEnergy() > speedSystem.expend){
+	 		if (that.getEnergy() > 4){
 	 			// 飞船速度保持恒定
-	 			that.speed = speedSystem.speed;
-	 			that.setEnergy(that.getEnergy() - speedSystem.expend);
+	 			that.speed = that.presetSpeed;
+	 			that.setEnergy(that.getEnergy() - that.energyExpendSpeed);
 	 			console.log("id:" + that.id + "----speed:" + that.speed + ",energy:" + that.getEnergy());
 	 		}
 	 		else {
 	 			// 能源耗尽，停止飞行
 	 			that.stop();
-	 			console.log("id:" + that.id + "----stop")
 	 		}
 	 	}, 1000);
 	 },
@@ -163,35 +159,22 @@ Star.prototype = {
 	 	}
 	 	console.log("id:" + that.id + "----destory")
 	 },
+
 	// 根据速度id生成speed对象
 	convertSpeed : function(speedId) {
-		switch (speedId) {
-			case 1:
-				return {
-					speed : 30,
-					expend: 5
-				};
-				break;
-			case 2:
-				return {
-					speed : 50,
-					expend: 7
-				};
-				break;
-			case 3:
-				return {
-					speed : 80,
-					expend: 9
-				};
-				break;
-		}
+		var speedAll = [
+			{speed : 30, expend: 5},
+			{speed : 40, expend: 7},
+			{speed : 80, expend: 9}
+		];
+		return speedAll[speedId - 1];
 	},
 
-	// 解密命令，这里就是我测试下
+	 // 解密命令
 	decode : function (mediator) {
-	 	var id = parseInt(mediator.slice(0, 4), 2),
-	 		command = "",
-	 		index = parseInt(mediator.slice(4), 2);
+	 	var id = parseInt(mediator.slice(0, 4), 2);
+	 	var command = "";
+	 	var index = parseInt(mediator.slice(4), 2);
 	 	switch (index) {
 	 		case 1 :
 	 			command = "start";
