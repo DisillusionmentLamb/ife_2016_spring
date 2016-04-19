@@ -23,8 +23,8 @@ function Star(id) {
 			if (energy != 100) {
 				// 飞船能源每秒增加2%
 				energy += 2;
-			} 
-			console.log("id:" + id + "---energy:" + energy);
+				console.log("id:" + id + "---energy:" + energy);
+			}
 		}, 1000);
 	})();
 
@@ -80,7 +80,7 @@ Star.prototype = {
 	 	var that = this;
 	 	
 	 	// 消耗能源每秒减少4%;
-	 	expendEnergyTimer = setInterval(function(){
+	 	this.expendEnergyTimer = setInterval(function(){
 	 		if (that.getEnergy() > 4){
 	 			// 飞船速度保持恒定
 	 			that.speed = 10;
@@ -101,10 +101,10 @@ Star.prototype = {
 	  * 实现飞船停止运行
 	  */
 	 stop : function() {
-	 	if (expendEnergyTimer != null) {
-	 		clearInterval(expendEnergyTimer);
+	 	if (this.expendEnergyTimer != null) {
+	 		clearInterval(this.expendEnergyTimer);
 	 		this.speed = 0;
-	 		expendEnergyTimer = null;
+	 		this.expendEnergyTimer = null;
 	 		console.log("id:" + this.id + "----stop")
 	 	}
 	 },
@@ -113,7 +113,7 @@ Star.prototype = {
 	  * 公有方法
 	  * 销毁自身
 	  */
-	 destory : function() {
+	 destroy : function() {
 	 	// 将自身实例化对象从实际行星状态中删除
 	 	var id = this.id,
 	 		index = -1;		// 获取自身在StarState中的位置
