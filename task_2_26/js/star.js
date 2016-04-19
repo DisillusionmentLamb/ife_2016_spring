@@ -30,10 +30,10 @@ function Star(id) {
 
 	this.getEnergy = function() {
 		return energy;
-	}
+	};
 	this.setEnergy = function(data) {
 		energy = data;
-	}
+	};
 }
 
 Star.prototype = {
