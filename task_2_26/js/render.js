@@ -11,13 +11,13 @@ var render = {
 	 * @description 闭包自运行，初始化定时器
 	 */
 	timer : (function () {
-		var inter = setInterval(function () {
+	/*	var inter = setInterval(function () {
 			for(var i = 0; i < window.StarState.length; i++){
 				render.renderStar(window.StarState[i]);
 				render.renderBtn(window.StarState[i]);
 			}
 		}, 1000);
-		return inter;
+		return inter;*/
 	})(),
 
 	/**
