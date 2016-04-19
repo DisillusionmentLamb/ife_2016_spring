@@ -23,22 +23,24 @@ var controller = {
 		// 发送指令
 		commander.createCommand(id, "destroy");
 		// 判断指令是否接受成功
-		var success = (function(id) {
+		setTimeout(function() {
+			var success = (function(id) {
 			for (var i = 0; i < StarState.length; i++) {
 				if (id == StarState[i].id) {
 					return false;
 				}
 			}
 			return true;
-		})();
-		if (success) {
-			// 更新指令处dom
-			var removeBtn = document.getElementById("ctrl-" + id);
-			document.getElementById("btn").removeChild(removeBtn);
-			// 更新行星dom
-			var removeStar = document.getElementById("star-" + id);
-			document.getElementById("ship").removeChild(removeStar);
-		}
+			})();
+			if (success) {
+				// 更新指令处dom
+				var removeBtn = document.getElementById("ctrl-" + id);
+				document.getElementById("btn").removeChild(removeBtn);
+				// 更新行星dom
+				var removeStar = document.getElementById("star-" + id);
+				document.getElementById("ship").removeChild(removeStar);
+			}
+		}, 1001);
 	},
 	// 飞行指令触发动作
 	startHandle : function(id) {

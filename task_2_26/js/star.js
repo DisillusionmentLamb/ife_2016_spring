@@ -64,8 +64,8 @@ Star.prototype = {
 				case 'stop':
 					that.stop();
 					break;
-				case 'destory':
-					that.destory();
+				case 'destroy':
+					that.destroy();
 					break;
 			}
 		}, 1000);
@@ -79,6 +79,11 @@ Star.prototype = {
 	 fly : function() {
 	 	var that = this;
 	 	
+	 	// 判断当前飞船是否运行
+	 	if (this.expendEnergyTimer != null) {
+	 		console.log("飞船已经运行！");
+	 		return;
+	 	}
 	 	// 消耗能源每秒减少4%;
 	 	this.expendEnergyTimer = setInterval(function(){
 	 		if (that.getEnergy() > 4){
@@ -89,8 +94,7 @@ Star.prototype = {
 	 		}
 	 		else {
 	 			// 能源耗尽，停止飞行
-	 			that.speed = 0;
-	 			clearInterval(expendEnergyTimer);
+	 			that.stop();
 	 			console.log("id:" + that.id + "----stop")
 	 		}
 	 	}, 1000);
@@ -115,24 +119,24 @@ Star.prototype = {
 	  */
 	 destroy : function() {
 	 	// 将自身实例化对象从实际行星状态中删除
-	 	var id = this.id,
+	 	var that = this,
 	 		index = -1;		// 获取自身在StarState中的位置
 	 	// 终止飞行系统
 	 	this.stop();
 	 	// 终止能源系统
 	 	clearInterval(addEnergyTimer);
 	 	// 终止能源系统
-	 	index = (function (id) {
+	 	index = (function () {
 	 		for (var i = 0; i < StarState.length; i++) {
-	 			if (id == StarState[i].id) {
-	 				return id;
+	 			if (that.id == StarState[i].id) {
+	 				return i;
 	 			}
 	 		}
 	 	})();
 	 	if (index != -1){
 	 		StarState.splice(index, 1);
 	 	}
-	 	console.log("id:" + this.id + "----destory")
+	 	console.log("id:" + that.id + "----destory")
 	 }
 }
 
