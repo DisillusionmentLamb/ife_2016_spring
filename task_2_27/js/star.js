@@ -2,7 +2,7 @@
  * 飞船类
  * @param {number} id
  */
-function Star(id) {
+function Star(id, energyId, speedId) {
 	this.id = id;
 	// 初始化速度为0
 	this.speed = 0;
@@ -12,18 +12,38 @@ function Star(id) {
 	this.expendEnergyTimer = null;
 	// 初始化行星能源系统定时器
 	this.addEnergyTimer = null;
-
+	// 初始化动力系统id
+	this.speedId = speedId;	
+	// 初始化能源系统id
+	var energyId = energyId;
+	
 	/**
 	 *	私有方法
 	 *  实现飞船的能源系统
 	 */
 	(function() {
 		addEnergyTimer = setInterval(function(){
+			var energySystem = 0;
+			switch (energyId){
+				case 1:
+					energySystem = 2;
+					break;
+				case 2:
+					energySystem = 3;
+					break;
+				case 3:
+					energySystem = 4;
+					break;
+				}
 			// 判断飞船能源是否为满
-			if (energy != 100) {
-				// 飞船能源每秒增加2%
-				energy += 2;
+			if (energy < 100) {
+				// 飞船能源每秒增加
+				energy += energySystem;
 				console.log("id:" + id + "---energy:" + energy);
+			}
+			else {
+				energy = 100;
+				console.log("id:" + id + "能源已满");
 			}
 		}, 1000);
 	})();
@@ -33,6 +53,9 @@ function Star(id) {
 	}
 	this.setEnergy = function(data) {
 		energy = data;
+	}
+	this.getSpeedSystem = function() {
+		return speedSystem;
 	}
 }
 
@@ -50,7 +73,7 @@ Star.prototype = {
 		// 丢包率为90%，只是方便我测试
 		// 丢包并且id为本飞船时，返回false
 		// 否则返回true
-		if (randomNum > 1 && mediator.id == that.id) {
+		if (randomNum > 9 && mediator.id == that.id) {
 			console.log("id:" + that.id + "----命令接受失败");
 			return false;
 		}
@@ -78,7 +101,8 @@ Star.prototype = {
 	 * 实现飞船的飞行状态
 	 */
 	 fly : function() {
-	 	var that = this;
+	 	var that = this,
+	 		speedSystem = that.convertSpeed(that.speedId);
 	 	
 	 	// 判断当前飞船是否运行
 	 	if (this.expendEnergyTimer != null) {
@@ -87,10 +111,10 @@ Star.prototype = {
 	 	}
 	 	// 消耗能源每秒减少4%;
 	 	this.expendEnergyTimer = setInterval(function(){
-	 		if (that.getEnergy() > 4){
+	 		if (that.getEnergy() > speedSystem.expend){
 	 			// 飞船速度保持恒定
-	 			that.speed = 10;
-	 			that.setEnergy(that.getEnergy() - 4);
+	 			that.speed = speedSystem.speed;
+	 			that.setEnergy(that.getEnergy() - speedSystem.expend);
 	 			console.log("id:" + that.id + "----speed:" + that.speed + ",energy:" + that.getEnergy());
 	 		}
 	 		else {
@@ -139,10 +163,47 @@ Star.prototype = {
 	 	}
 	 	console.log("id:" + that.id + "----destory")
 	 },
+	// 根据速度id生成speed对象
+	convertSpeed : function(speedId) {
+		switch (speedId) {
+			case 1:
+				return {
+					speed : 30,
+					expend: 5
+				};
+				break;
+			case 2:
+				return {
+					speed : 50,
+					expend: 7
+				};
+				break;
+			case 3:
+				return {
+					speed : 80,
+					expend: 9
+				};
+				break;
+		}
+	},
 
-	 // 解密命令，这里就是我测试下
-	 decode : function (mediator) {
-	 	return {'id':1, 'command':'start'}
+	// 解密命令，这里就是我测试下
+	decode : function (mediator) {
+	 	var id = parseInt(mediator.slice(0, 4), 2),
+	 		command = "",
+	 		index = parseInt(mediator.slice(4), 2);
+	 	switch (index) {
+	 		case 1 :
+	 			command = "start";
+	 			break;
+	 		case 2 :
+	 			command = "stop";
+	 			break;
+	 		case 3 :
+	 			command = "destroy";
+	 			break;
+	 	}
+	 	return {id, command};
 	 }
 }
 
