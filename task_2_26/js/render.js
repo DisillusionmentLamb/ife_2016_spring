@@ -71,8 +71,8 @@ var render = {
 	 * @description 更新飞船的能量的文字，以及红色背景宽度
 	 */
 	updateStarText : function (starId, energy) {
-		var energyNum = document.getElementById('star-' + starId + 'energy');
-		var energyWidth = document.getElementById('star-' + starId + 'width');
+		var energyNum = document.getElementById('star-' + starId + '-energy');
+		var energyWidth = document.getElementById('star-' + starId + '-width');
 		energyNum.innerHTML = starId +'号-'+ energy +'%';
 		energyWidth.style.width = energy +'%';
 	},

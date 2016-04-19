@@ -2,12 +2,7 @@
 var StarState = [];
 
 var controller = {
-	// 将字符串为element对象
-	parseDom : function(str) {
-		var element = document.createElement("div");
-		element.innerHTML = str;
-		return element.childNodes[0];
-	},
+
 	// 添加飞船点击时触发动作
 	addStarHandle : function() {
 		//读取指挥官假象状态，若大于4不在添加
@@ -19,10 +14,9 @@ var controller = {
 		commander.createCommand(0, "add");
 		// 更新指令处dom
 		var id = StarState[StarState.length - 1].id;
-		document.getElementById("control").innerHTML += render.createBtnHtml(id);
+		document.getElementById("btn").appendChild(render.createBtnHtml(id));
 		// 更新行星dom
-		var starElement = controller.parseDom(render.createStarHtml(id, 100));
-		document.getElementsByClassName("space")[0].appendChild(starElement);
+		document.getElementById("ship").appendChild(render.createStarHtml(id, 100));
 	},
 	// 销毁飞船时触发动作
 	removeStarHandle : function(id) {
@@ -40,10 +34,10 @@ var controller = {
 		if (success) {
 			// 更新指令处dom
 			var removeBtn = document.getElementById("ctrl-" + id);
-			document.getElementById("control").removeChild(removeBtn);
+			document.getElementById("btn").removeChild(removeBtn);
 			// 更新行星dom
 			var removeStar = document.getElementById("star-" + id);
-			document.getElementsByClassName("space")[0].removeChild(removeStar);
+			document.getElementById("ship").removeChild(removeStar);
 		}
 	},
 	// 飞行指令触发动作
@@ -58,7 +52,7 @@ var controller = {
 	addControlDelegate : function() {
 		var control = document.getElementById("control");
 		control.addEventListener("click", function(event) {
-			if (event.target && event.target.nodeName == "BUTTON") {
+			if (event.target && event.target.nodeName.toUpperCase() == "BUTTON") {
 				var id = event.target.parentNode.getAttribute('id').split('-')[1],
 					command = event.target.getAttribute('class');
 				switch (command) {

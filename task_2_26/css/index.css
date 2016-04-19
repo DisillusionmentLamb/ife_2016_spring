@@ -34,16 +34,17 @@ body {
 	height: 100%;
 }
 [id*='star-'] {
-	width: 150px;
-	height: 440px;
-	margin: 0 auto;
-	padding: 60px 0 0 50px;
+	width: 100%;
+	height: 100%;
 	background-color: transparent;
 	transition: 1s linear;
 	-webkit-transition: 1s linear;
 	-moz-transition: 1s linear;
 	-o-transition: 1s linear;
 	-ms-transition: 1s linear;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 .star {
 	width: 100px;
@@ -56,7 +57,9 @@ body {
 	text-align: center;
 	color: white;
 	line-height: 30px;
-	position: relative;
+	position: absolute;
+	top: 60px;
+	left: 195px;
 	border: 1px solid #DA1717;
 }
 .power {
