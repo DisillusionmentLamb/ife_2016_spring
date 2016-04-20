@@ -29,6 +29,12 @@ function Star(id, energyId, speedId) {
 	// 初始化行星能源系统定时器
 	this.addEnergyTimer = null;
 
+	// 初始化发送状态定时器
+	this.sendMsgTimer = null;
+
+	// 初始化行星状态
+	var state = false;
+
 	/**
 	 *	私有方法
 	 *  实现飞船的能源系统
@@ -46,11 +52,44 @@ function Star(id, energyId, speedId) {
 		}, 1000);
 	})();
 
+	// 私有方法，定时向commander发送行星当前状态
+	(function() {
+		sendMsgTimer = setInterval(function() {
+			var msg = "",
+				energyString = "";
+			msg += parseInt(id).toString(2);
+			while (msg.length < 4) {
+				msg = '0' + msg;
+			}
+			if (!state) {
+				msg += "0010";
+			}
+			else {
+				msg += "0001";
+			}
+			energyString += parseInt(energy).toString(2);
+			while (energyString.length < 8) {
+				energyString = '0' + energyString;
+			}
+			msg += energyString;
+			commander.updateDC(msg);
+		} ,500)
+	})();
+
 	this.getEnergy = function() {
 		return energy;
 	}
+
 	this.setEnergy = function(data) {
 		energy = data;
+	}
+
+	this.getState = function() {
+		return state;
+	}
+
+	this.setState = function(bool) {
+		state = bool;
 	}
 }
 
@@ -106,6 +145,7 @@ Star.prototype = {
 	 		console.log("飞船已经运行！");
 	 		return;
 	 	}
+	 	this.setState(true);
 	 	// 消耗能源每秒减少energyExpendSpeed
 	 	this.expendEnergyTimer = setInterval(function(){
 	 		if (that.getEnergy() > 4){
@@ -131,6 +171,7 @@ Star.prototype = {
 	 		this.speed = 0;
 	 		this.expendEnergyTimer = null;
 	 		console.log("id:" + this.id + "----stop")
+	 		this.setState(false);
 	 	}
 	 },
 

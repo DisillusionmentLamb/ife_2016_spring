@@ -79,6 +79,11 @@ var commander = {
 			id = '0' + id;
 		}
 		return id + command;
+	},
+
+	//测试用例
+	updateDC : function (string) {
+		console.log(string);
 	}
 };
 
