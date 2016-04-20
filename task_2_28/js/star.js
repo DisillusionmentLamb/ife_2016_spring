@@ -30,7 +30,7 @@ function Star(id, energyId, speedId) {
 	this.addEnergyTimer = null;
 
 	// 初始化发送状态定时器
-	this.sendMsgTimer = null;
+	var sendMsgTimer = null;
 
 	// 初始化行星状态
 	var state = false;
@@ -91,6 +91,10 @@ function Star(id, energyId, speedId) {
 
 	this.setState = function(bool) {
 		state = bool;
+	}
+
+	this.getSendMsgTimer = function() {
+		return sendMsgTimer;
 	}
 }
 
@@ -193,7 +197,7 @@ Star.prototype = {
 	 	// 终止能源系统
 	 	clearInterval(addEnergyTimer);
 	 	// 终止发送系统
-	 	clearInterval(sendMsgTimer);
+	 	clearInterval(this.getSendMsgTimer());
 	 	// 向commander发送销毁指令
 	 	commander.updateDC(idString + "110000000000");
 	 	console.log(idString + "110000000000----destroy");
