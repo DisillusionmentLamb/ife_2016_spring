@@ -80,11 +80,6 @@ var commander = {
 		}
 		return id + command;
 	},
-
-	//测试用例
-	updateDC : function (string) {
-		console.log(string);
-	},
 	
 	// 解析飞船的广播命令,更新DC
 	updateDC : function (code) {
@@ -101,7 +96,7 @@ var commander = {
 
 				// 处理销毁状态，1100为12
 				if (star.state == 12) {
-					window.DC = window.DC.splice(i, 1);
+					window.DC.splice(i, 1);
 
 				// 处理开始、停止状态
 				} else {

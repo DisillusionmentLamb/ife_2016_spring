@@ -27,7 +27,7 @@ function Star(id, energyId, speedId) {
 	this.expendEnergyTimer = null;
 	
 	// 初始化行星能源系统定时器
-	this.addEnergyTimer = null;
+	var addEnergyTimer = null;
 
 	// 初始化发送状态定时器
 	var sendMsgTimer = null;
@@ -95,6 +95,10 @@ function Star(id, energyId, speedId) {
 
 	this.getSendMsgTimer = function() {
 		return sendMsgTimer;
+	}
+
+	this.getAddEnergyTimer = function() {
+		return addEnergyTimer;
 	}
 }
 
@@ -195,7 +199,7 @@ Star.prototype = {
 	 	// 终止飞行系统
 	 	this.stop();
 	 	// 终止能源系统
-	 	clearInterval(addEnergyTimer);
+	 	clearInterval(this.getAddEnergyTimer());
 	 	// 终止发送系统
 	 	clearInterval(this.getSendMsgTimer());
 	 	// 向commander发送销毁指令
