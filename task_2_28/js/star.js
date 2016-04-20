@@ -187,6 +187,8 @@ Star.prototype = {
 	 	this.stop();
 	 	// 终止能源系统
 	 	clearInterval(addEnergyTimer);
+	 	// 终止发送系统
+	 	clearInterval(sendMsgTimer);
 	 	// 终止能源系统
 	 	index = (function () {
 	 		for (var i = 0; i < StarState.length; i++) {
@@ -223,7 +225,7 @@ Star.prototype = {
 	 		case 2 :
 	 			command = "stop";
 	 			break;
-	 		case 3 :
+	 		case 12 :
 	 			command = "destroy";
 	 			break;
 	 	}
