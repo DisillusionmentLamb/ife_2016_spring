@@ -16,18 +16,27 @@ var player = {
 		// 根据方块朝向判断移动x，y
 		if (this.head == "left" || this.head == "right") {
 			if (this.head == "left") {
-				this.position[0]--;
+				// 边界判断
+				if (this.position[0] > 1) {
+					this.position[0]--;
+				}
 			}
 			else {
-				this.position[0]++;
+				if (this.position[0] < 10) {
+					this.position[0]++;
+				}
 			}
 		}
 		else {
 			if (this.head == "top") {
-				this.position[1]--;
+				if (this.position[1] > 1) {
+					this.position[1]--;
+				}
 			}
 			else {
-				this.position[1]++;
+				if (this.position[1] < 10) {
+					this.position[1]++;
+				}
 			}
 		}
 	},
