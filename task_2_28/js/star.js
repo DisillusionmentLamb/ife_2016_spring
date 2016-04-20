@@ -194,7 +194,7 @@ Star.prototype = {
 	 	// 终止发送系统
 	 	clearInterval(sendMsgTimer);
 	 	// 向commander发送销毁指令
-	 	commander.sendMsgTimer(idString + "110000000000");
+	 	commander.updateDC(idString + "110000000000");
 	 	// 终止能源系统
 	 	index = (function () {
 	 		for (var i = 0; i < StarState.length; i++) {
