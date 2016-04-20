@@ -1,0 +1,121 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	width: 500px;
+	margin: 20px auto;
+}
+.space {
+	width: 100%;
+	height: 500px;
+	background-color: black;
+	position: relative;
+	z-index: -99;
+}
+.planet {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -100px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-o-border-radius: 100px;
+	-ms-border-radius: 100px;
+	border-radius: 100px;
+	background-color: #6FB2E2;
+}
+.ship {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+[id*='star-'] {
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	transition: 1s linear;
+	-webkit-transition: 1s linear;
+	-moz-transition: 1s linear;
+	-o-transition: 1s linear;
+	-ms-transition: 1s linear;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.star {
+	width: 100px;
+	height: 30px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+	text-align: center;
+	color: white;
+	line-height: 30px;
+	position: absolute;
+	top: 60px;
+	left: 195px;
+	border: 1px solid #DA1717;
+}
+.power {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #DA1717;
+	z-index: -1;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+}
+.control {
+	margin-top: 20px;
+	text-align: center;
+}
+#btn {
+	margin-bottom: 10px;
+}
+#btn > div {
+	margin-bottom: 10px;
+}
+.control button {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	margin-left: 20px;
+}
+button,
+button:hover,
+button:focus {
+	outline: none;
+	cursor: pointer;
+}
+.form {
+	margin: 10px auto;
+	border: 1px dashed #f2f2f2;
+}
+.form > div {
+	margin-top: 10px;
+}
+.form span {
+	margin: 0 10px;
+}
+.add {
+	width: 80px;
+	height: 30px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+	margin: 10px 0;
+}
