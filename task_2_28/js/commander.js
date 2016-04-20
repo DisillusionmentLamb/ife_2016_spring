@@ -84,6 +84,39 @@ var commander = {
 	//测试用例
 	updateDC : function (string) {
 		console.log(string);
+	},
+	
+	// 解析飞船的广播命令,更新DC
+	updateDC : function (code) {
+		var star = {};
+		star.id = parseInt(code.slice(0, 4), 2);
+		star.state = parseInt(code.slice(4, 8), 2);
+		star.energy = parseInt(code.slice(8), 2);
+		
+		// 查找是否之前存在
+		var isThereBefore = false;
+		for(var i = 0; i < window.DC.length; i++){
+			// 找到
+			if (star.id == window.DC[i].id) {
+
+				// 处理销毁状态，1100为12
+				if (star.state == 12) {
+					window.DC.splice(i, 1);
+
+				// 处理开始、停止状态
+				} else {
+					window.DC[i] = star;
+				}
+
+				isThereBefore = true;
+				break;
+			}
+		}
+
+		// 之前没有
+		if (!isThereBefore) {
+			window.DC.push(star);
+		}
 	}
 };
 
