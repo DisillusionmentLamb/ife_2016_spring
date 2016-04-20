@@ -1,6 +1,9 @@
 // 实际行星状态
 var StarState = [];
 
+// DC
+var DC = [];
+
 var controller = {
 
 	// 添加飞船点击时触发动作

@@ -19,6 +19,7 @@ var render = {
 			for(var i = 0; i < commander.StarState.length; i++){
 				render.renderStar(commander.StarState[i]);
 			}
+			render.showDC();
 		}, 1000);
 		return inter;
 	})(),
@@ -93,5 +94,27 @@ var render = {
 		var rotateDeg = transformBefore ? transformBefore.slice(7, -4) : 0;
 		rotateDeg = parseInt(rotateDeg) + speed;
 		starEle.style.transform = 'rotate('+ rotateDeg +'deg)';
+	},
+	
+	/**
+	 * showDC
+	 * @description 渲染DC到状态屏幕
+	 */
+	showDC : function  () {
+		var html = '<tr>'
+					+	'<th>编号</th>'
+					+	'<th>飞行状态</th>'
+					+	'<th>能量剩余</th>'
+					+'</tr>';
+		var stateText = ['飞行中', '已停止'];
+		var table = document.getElementById('starStateScreen');
+		for(var i = 0; i < window.DC.length; i++){
+			html += '<tr>'
+					+	'<td>' + window.DC[i].id + '</td>'
+					+	'<td>' + stateText[window.DC[i].state - 1] + '</td>'
+					+	'<td>' + window.DC[i].energy + '</td>'
+					+'</tr>';
+		}
+		table.innerHTML = html;
 	}
 }

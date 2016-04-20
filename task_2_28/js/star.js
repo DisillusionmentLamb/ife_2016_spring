@@ -29,6 +29,12 @@ function Star(id, energyId, speedId) {
 	// 初始化行星能源系统定时器
 	this.addEnergyTimer = null;
 
+	// 初始化发送状态定时器
+	this.sendMsgTimer = null;
+
+	// 初始化行星状态
+	var state = false;
+
 	/**
 	 *	私有方法
 	 *  实现飞船的能源系统
@@ -46,11 +52,45 @@ function Star(id, energyId, speedId) {
 		}, 1000);
 	})();
 
+	// 私有方法，定时向commander发送行星当前状态
+	(function() {
+		sendMsgTimer = setInterval(function() {
+			var msg = "",
+				energyString = "";
+			msg += parseInt(id).toString(2);
+			while (msg.length < 4) {
+				msg = '0' + msg;
+			}
+			if (!state) {
+				msg += "0010";
+			}
+			else {
+				msg += "0001";
+			}
+			energyString += parseInt(energy).toString(2);
+			while (energyString.length < 8) {
+				energyString = '0' + energyString;
+			}
+			msg += energyString;
+			commander.updateDC(msg);
+			console.log(msg + '----message');
+		} ,500)
+	})();
+
 	this.getEnergy = function() {
 		return energy;
 	}
+
 	this.setEnergy = function(data) {
 		energy = data;
+	}
+
+	this.getState = function() {
+		return state;
+	}
+
+	this.setState = function(bool) {
+		state = bool;
 	}
 }
 
@@ -106,6 +146,7 @@ Star.prototype = {
 	 		console.log("飞船已经运行！");
 	 		return;
 	 	}
+	 	this.setState(true);
 	 	// 消耗能源每秒减少energyExpendSpeed
 	 	this.expendEnergyTimer = setInterval(function(){
 	 		if (that.getEnergy() > 4){
@@ -131,6 +172,7 @@ Star.prototype = {
 	 		this.speed = 0;
 	 		this.expendEnergyTimer = null;
 	 		console.log("id:" + this.id + "----stop")
+	 		this.setState(false);
 	 	}
 	 },
 
@@ -141,11 +183,20 @@ Star.prototype = {
 	 destroy : function() {
 	 	// 将自身实例化对象从实际行星状态中删除
 	 	var that = this,
-	 		index = -1;		// 获取自身在StarState中的位置
+	 		index = -1,		// 获取自身在StarState中的位置
+	 		idString = parseInt(this.id).toString(2);
+	 	while (idString.length < 4) {
+	 		idString = '0' + idString;
+	 	}
 	 	// 终止飞行系统
 	 	this.stop();
 	 	// 终止能源系统
 	 	clearInterval(addEnergyTimer);
+	 	// 终止发送系统
+	 	clearInterval(sendMsgTimer);
+	 	// 向commander发送销毁指令
+	 	commander.updateDC(idString + "110000000000");
+	 	console.log(idString + "110000000000----destroy");
 	 	// 终止能源系统
 	 	index = (function () {
 	 		for (var i = 0; i < StarState.length; i++) {
@@ -182,7 +233,7 @@ Star.prototype = {
 	 		case 2 :
 	 			command = "stop";
 	 			break;
-	 		case 3 :
+	 		case 12 :
 	 			command = "destroy";
 	 			break;
 	 	}
