@@ -182,13 +182,19 @@ Star.prototype = {
 	 destroy : function() {
 	 	// 将自身实例化对象从实际行星状态中删除
 	 	var that = this,
-	 		index = -1;		// 获取自身在StarState中的位置
+	 		index = -1,		// 获取自身在StarState中的位置
+	 		idString = this.id.toString(2);
+	 	while (idString.length < 4) {
+	 		idString += '0' + idString;
+	 	}
 	 	// 终止飞行系统
 	 	this.stop();
 	 	// 终止能源系统
 	 	clearInterval(addEnergyTimer);
 	 	// 终止发送系统
 	 	clearInterval(sendMsgTimer);
+	 	// 向commander发送销毁指令
+	 	commander.sendMsgTimer(idString + "110000000000");
 	 	// 终止能源系统
 	 	index = (function () {
 	 		for (var i = 0; i < StarState.length; i++) {
