@@ -3,15 +3,23 @@ body {
 	padding: 0;
 }
 .container {
-	width: 500px;
-	margin: 20px auto;
+	width: 1000px;
+	height: 500px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	position: absolute;
 }
 .space {
-	width: 100%;
+	width: 500px;
 	height: 500px;
 	background-color: black;
 	position: relative;
 	z-index: -99;
+	float: left;
+	overflow: hidden;
 }
 .planet {
 	width: 200px;
@@ -75,9 +83,25 @@ body {
 	-ms-border-radius: 15px;
 	border-radius: 15px;
 }
-.control {
-	margin-top: 20px;
+.screen {
+	float: left;
+	width: 500px;
+	margin-bottom: 50px;
 	text-align: center;
+	border-collapse:collapse;
+}
+.screen caption {
+	margin-bottom: 20px;
+}
+.screen td,
+.screen th  {
+	border: 1px solid #f2f2f2;
+}
+.control {
+	text-align: center;
+	width: 500px;
+	float: left;
+	position: relative;
 }
 #btn {
 	margin-bottom: 10px;
