@@ -15,8 +15,8 @@ var render = {
 		var box = document.getElementById('box');
 
 		// 更新位置
-		box.style.top = player.position[1] * 50 + 'px';
-		box.style.left = player.position[0] * 50 + 'px';
+		box.style.top = (player.position[1] - 1) * 50 + 'px';
+		box.style.left = (player.position[0] - 1) * 50 + 'px';
 
 		// 更新指向
 		box.style.transform = render.rotateBoxStyle(box);
@@ -98,8 +98,8 @@ var render = {
 		}
 		html += '<div id="box" '
 				+'style="transform:rotate(0deg);'
-				+'top:' + player.position[1] * 50 + 'px;'
-				+'left:' + player.position[0] * 50 + 'px;'
+				+'top:' + (player.position[1] - 1) * 50 + 'px;'
+				+'left:' + (player.position[0] - 1) * 50 + 'px;'
 				+'">'
 				+'<div id="boxHead"></div>'
 				+'<div id="boxBody"></div>'

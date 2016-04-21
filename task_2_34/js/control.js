@@ -7,11 +7,55 @@ var controller = {
 				controller.changeHead(commandArr[1]);
 				break;
 			case "MOV":
-				controller.changeHead(commandArr[1]);
+				switch (commandArr[1]) {
+					case "LEF":
+						player.head = "left";
+						break;
+					case "RIG":
+						player.head = "right";
+						break;
+					case "TOP":
+						player.head = "top";
+						break;
+					case "BOT":
+						player.head = "bottom";
+						break;
+					default:
+						console.log("非法输入！");
+						break;
+				}
 				player.playerGo();
+				break;
+			case "TRA":
+				if (commandArr[1] == "LEF" || commandArr[1] == "RIG") {
+					if (commandArr[1] == "LEF") {
+						// 边界判断
+						if (player.position[0] > 1) {
+							player.position[0]--;
+						}
+					}
+					else {
+						if (player.position[0] < 10) {
+							player.position[0]++;
+						}
+					}
+				}
+				if (commandArr[1] == "TOP" || commandArr[1] == "BOT") {
+					if (commandArr[1] == "TOP") {
+						if (player.position[1] > 1) {
+							player.position[1]--;
+						}
+					}
+					else {
+						if (player.position[1] < 10) {
+							player.position[1]++;
+						}
+					}
+				}
 				break;
 			case "GO":
 				player.playerGo();
+				break;
 			default:
 				console.log("command false");
 				break;
