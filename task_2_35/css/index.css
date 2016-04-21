@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 .container {
-	width: 552px;
+	width: 902px;
 	height: 610px;
 	margin : 20px auto;
 	text-align: center;
@@ -36,7 +36,7 @@
 
 #chessBox {
 	border: 1px solid black;
-	float: right;
+	float: left;
 	width: 502px;
 	height: 502px;
 	margin-bottom: 20px;
@@ -86,6 +86,64 @@
 }
 
 .command {
-	clear: both;
+	height: 100%;
+	width: 350px;
+	padding-left: 10px;
+	padding-right: 10px;
+	float: right;
 }
 
+.command textarea {
+	width: 300px;
+	height: 200px;
+	background-color: #312B2B;
+	resize: none;
+	overflow: auto;
+	color: #26EC37;
+	float: right;
+	border: 0;
+	line-height: 24px;
+	font-size: 17px;
+	padding-left: 2px;
+}
+
+#commandLine {
+	width: 30px;
+	height: 200px;
+	float: left;
+	background-color: #717171;
+	margin-right: 0;
+	overflow: hidden;
+}
+
+#commandLine div {
+	height: 18px;
+	margin: 3px 0;
+	color: #D2D2D2;
+}
+
+#commandLine div.wrong {
+	background-color: red;
+	border-radius: 10px;
+	-weblit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+}
+
+.command textarea:hover,
+.command textarea:focus {
+	outline: none;
+}
+
+.command button {
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 20px;
+	border-radius: 15px;
+	-weblit-border-radius: 15px;
+	-o-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+}
