@@ -26,6 +26,9 @@ var controller = {
 						player.head = "bottom";
 						controller.execute("GO " + commandArr[2]);
 						break;
+					case "TO":
+						var positionArr = commandArr[2].split(",");
+						controller.findWay(positionArr[0], positionArr[1]);
 					default:
 						console.log("非法输入！");
 						break;
@@ -113,8 +116,8 @@ var controller = {
 				}
 				break;
 			case "MOV":
-				if (commandArr[1] == "LEF" || commandArr[1] == "RIG" || commandArr[1] == "TOP" || commandArr[1] == "BOT") {
-					if (/^\d+$/.test(commandArr[2]) || commandArr[2] == undefined) {
+				if (commandArr[1] == "LEF" || commandArr[1] == "RIG" || commandArr[1] == "TOP" || commandArr[1] == "BOT" || commandArr[1] == "TO") {
+					if (commandArr[2].length > 0 || commandArr[2] == undefined) {
 						return true;
 					}
 					else {
