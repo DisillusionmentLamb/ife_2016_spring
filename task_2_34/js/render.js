@@ -11,6 +11,9 @@ var render = {
 	// 记录小方块位置
 	lastPosition : [1, 1],
 
+	// 记录小方块指向
+	lastHead : 'top',
+
 	// 更新小方块
 	refresh : function () {
 
@@ -18,7 +21,7 @@ var render = {
 		var oldBox = document.getElementById('row-' + render.lastPosition[1] + '-col-' + render.lastPosition[0]);
 
 		// 目前小方块
-		var newBox = document.getElementById('row-' + window.player.position[1] + '-col-' + window.player.position[0]);
+		var newBox = document.getElementById('row-' + player.position[1] + '-col-' + player.position[0]);
 
 		// 更新指向
 		if (oldBox == newBox) {
@@ -30,8 +33,11 @@ var render = {
 		}
 
 		// 更新记录位置
-		render.lastPosition[0] = window.player.position[0];
-		render.lastPosition[1] = window.player.position[1];
+		render.lastPosition[0] = player.position[0];
+		render.lastPosition[1] = player.position[1];
+
+		// 更新记录指向
+		render.lastHead = player.head;
 	},
 
 	// 替换小方块位置
@@ -43,30 +49,42 @@ var render = {
 	// 旋转小方块指向
 	rotateBox : function () {
 		var box = document.getElementById('box');
-		box.style.transform = render.rotateBoxStyle();
+		box.style.transform = render.rotateBoxStyle(box);
 	},
 
 	// 根据head返回样式
-	rotateBoxStyle : function () {
-		switch (window.player.head) {
-			case 'left':
-				return 'rotate(270deg)';
+	rotateBoxStyle : function (box) {
+
+		var posArr = {
+			'top' : 0,
+			'right' : 1,
+			'bottom' : 2,
+			'left' : 3,
+		};
+
+		if (!box) {
+			return 'rotate(' + (posArr[player.head] * 90) + 'deg)';
+		}
+
+		var degBefore = parseInt(box.style.transform.slice(7, -4));
+		
+		var change = posArr[player.head] - posArr[render.lastHead];
+
+		switch (change) {
+			case -3:
+				change = 1;
 				break;
-			case 'bottom':
-				return 'rotate(180deg)';
-				break;
-			case 'right':
-				return 'rotate(90deg)';
-				break;
-			default : 
-				return 'rotate(0deg)';
+			case 3:
+				change = -1;
 				break;
 		}
+
+		return 'rotate(' + (degBefore + change * 90) + 'deg)';
 	},
 
 	// 渲染顶部数字
 	renderTopNum : function () {
-		var html = render.createNumHtml(window.ChessBox.width);
+		var html = render.createNumHtml(ChessBox.width);
 		var topNum = document.getElementById('topNum');
 		html = '<div></div>' + html;
 		topNum.innerHTML = html;
@@ -74,14 +92,14 @@ var render = {
 
 	// 渲染左边数字
 	renderLeftNum : function () {
-		var html = render.createNumHtml(window.ChessBox.height);
+		var html = render.createNumHtml(ChessBox.height);
 		var leftNum = document.getElementById('leftNum');
 		leftNum.innerHTML = html;
 	},
 
 	// 渲染棋盘
 	renderChessBox : function () {
-		var html = render.createChessBoxHtml(window.ChessBox.width, window.ChessBox.height);
+		var html = render.createChessBoxHtml(ChessBox.width, ChessBox.height);
 		var chessBox = document.getElementById('chessBox');
 		chessBox.innerHTML = html;
 	},
