@@ -48,16 +48,15 @@ var render = {
 
 	// 根据head返回样式
 	rotateBoxStyle : function () {
-		console.log(window.player.head)
 		switch (window.player.head) {
 			case 'left':
 				return 'rotate(270deg)';
 				break;
-			case 'right':
-				return 'rotate(90deg)';
-				break;
 			case 'bottom':
 				return 'rotate(180deg)';
+				break;
+			case 'right':
+				return 'rotate(90deg)';
 				break;
 			default : 
 				return 'rotate(0deg)';
