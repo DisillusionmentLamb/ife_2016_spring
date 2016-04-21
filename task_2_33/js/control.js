@@ -18,6 +18,7 @@ var controller = {
 				console.log("非法命令！");
 				break;
 		}
+		render.refresh();
 	},
 
 	// 为页面添加事件代理
