@@ -76,6 +76,7 @@ var controller = {
 				console.log("command false");
 				break;
 		}
+		render.refresh();
 	},
 	// 根据传入方向改变player.head方向
 	changeHead : function(directString) {
@@ -151,11 +152,15 @@ var controller = {
 		page.addEventListener("click", function(event) {
 			if (event.target.nodeName = "BUTTON" && event.target.getAttribute("id") == "commandBtn") {
 				if (controller.falseRow.length == 0) {
-					var commandArr = textarea.value.split(/\n/);
-					for (var i = 0; i < commandArr.length; i++) {
+					var commandArr = textarea.value.split(/\n/),
+						i = 0;
+					var timer = setInterval(function() {
 						controller.execute(commandArr[i]);
-						render.refresh();
-					}
+						i++;
+						if (i > commandArr.length - 1) {
+							clearInterval(timer);
+						}
+					}, 1000);
 				}
 				else {
 					alert("输入命令不合法");
@@ -173,7 +178,8 @@ var controller = {
 			for (var i = 0; i < commandArr.length; i++) {
 				// 如果错误加入数组
 				if (!controller.check(commandArr[i])) {
-					controller.falseRow.push(++i);
+					var temp = i + 1;
+					controller.falseRow.push(temp);
 				}
 				else {
 					// 如果输入正确将之前存放行数从数组中移除
