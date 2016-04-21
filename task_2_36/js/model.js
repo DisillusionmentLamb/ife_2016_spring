@@ -2,7 +2,8 @@
 var ChessBox = {
 	// 棋盘宽度
 	width : 10,
-	height : 10
+	height : 10,
+	Walls : []
 }
 
 // 方块对象
@@ -89,6 +90,38 @@ var player = {
 			case "bottom":
 				this.head = "top";
 				break;
+		}
+	},
+	// 在方块head朝向位置建立墙
+	buildWall : function() {
+		if (this.head == "left" || this.head == "right") {
+			if (this.head == "left") {
+				// 边界判断
+				if (this.position[0] > 1) {
+					var Wall_x = this.position[0] - 1;
+					ChessBox.Walls.push([Wall_x, this.position[1]]);
+				}
+			}
+			else {
+				if (this.position[0] < 10) {
+					var Wall_x = this.position[0] + 1;
+					ChessBox.Walls.push([Wall_x, this.position[1]]);
+				}
+			}
+		}
+		else {
+			if (this.head == "top") {
+				if (this.position[1] > 1) {
+					var Wall_y = this.position[1] - 1;
+					ChessBox.Walls.push([this.position[0], Wall_y]);
+				}
+			}
+			else {
+				if (this.position[1] < 10) {
+					var Wall_y = this.position[1] + 1;
+					ChessBox.Walls.push([this.position[0], Wall_y]);
+				}
+			}
 		}
 	}
 }

@@ -72,6 +72,12 @@ var controller = {
 					player.playerGo();
 				}
 				break;
+			case "BUILD":
+				player.buildWall();
+				break;
+			case "BRI":
+				render.setWallColor(commandArr[1]);
+				break;
 			default:
 				console.log("command false");
 				break;
@@ -140,10 +146,100 @@ var controller = {
 					return false;
 				}
 				break;
+			case "BUILD":
+				if (commandArr[1] == undefined) {
+					return true;
+				}
+				else {
+					return false;
+				}
+				break;
+			case "BRU":
+				if (commandArr[1] != undefined) {
+					return true;
+				}
+				else {
+					return false;
+				}
 			default:
 				return false;
 				break;
 		}
+	},
+	// DFS寻路算法，接受目标位置坐标
+	findWay : function(x, y) {
+		var Stack = [],
+			visited = [],
+			p = null;		// 前驱结点
+		// 判断是否该节点访问过
+		function isVisited(arr) {
+			var result = [].some.call(visited, function(item) {
+				return (item[0] == arr[0]) && (item[1] == arr[1]);
+			});
+			return result;
+		}
+		// 判断目标位置为是否是围墙
+		function isWall(arr) {
+			var result = [].some.call(ChessBox.Walls, function(item) {
+				return (item[0] == arr[0]) && (item[1] == arr[1]);
+			});
+			return result;
+		}
+		// 将起点位置压入栈
+		Stack.push([player.position[0],player.position[1]]);
+		visited.push([player.position[0],player.position[1]]);
+		timer = setInterval(function(){ 
+			if (!(Stack.length == 0)){
+			p = Stack.pop();
+			// 判断节点是否为终点
+			if (p[0] == x && p[1] == y) {
+				clearInterval(timer);
+				return;
+			}
+			// 向右移动
+			if (p[0] < 10 && !isVisited([p[0] + 1, p[1]]) && !isWall([p[0] + 1, p[1]])) {
+				visited.push([p[0] + 1, p[1]]);
+				Stack.push([p[0] + 1, p[1]]);
+			}
+			// 向下移动
+			if (p[1] < 10 && !isVisited([p[0], p[1] + 1]) && !isWall([p[0], p[1] + 1])) {
+				visited.push([p[0], p[1] + 1]);
+				Stack.push([p[0], p[1] + 1]);
+			}
+			// 左
+			if (p[0] > 1 && !isVisited([p[0] - 1, p[1]]) && !isWall([p[0] - 1, p[1]])) {
+				visited.push([p[0] - 1, p[1]]);
+				Stack.push([p[0] - 1, p[1]]);
+			}
+			// 上
+			if (p[1] > 1 && !isVisited([p[0], p[1] - 1]) && !isWall([p[0], p[1] - 1])) {
+				visited.push([p[0], p[1] - 1]);
+				Stack.push([p[0], p[1] - 1]);
+			}
+			// 若栈顶元素改变，执行动画
+			if (!(p[0] == Stack[Stack.length-1][0] && p[1] == Stack[Stack.length-1][1])) {
+				if (p[0] == Stack[Stack.length-1][0]) {
+					if (p[1] > Stack[Stack.length-1][1]) {
+						controller.execute("MOV TOP");
+					}
+					else {
+						controller.execute("MOV BOT");
+					}
+				}
+				else {
+					if (p[0] > Stack[Stack.length-1][0]) {
+						controller.execute("MOV LEF");
+					}
+					else {
+						controller.execute("MOV RIG");
+					}
+				}
+			}
+		}
+		else {
+			clearInterval(timer);
+		}
+		}, 1000);
 	},
 	// 为页面添加事件代理
 	addPageDelegate : function() {
