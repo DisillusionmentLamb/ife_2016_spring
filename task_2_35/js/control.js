@@ -192,6 +192,9 @@ var controller = {
 			}
 			render.renderCommandLine(commandArr.length, controller.falseRow);
 		}, false);
+		textarea.addEventListener("scroll", function() {
+			document.getElementById("commandLine").scrollTop = textarea.scrollTop;
+		}, false);
 	}
 }
 
