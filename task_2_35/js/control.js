@@ -166,6 +166,9 @@ var controller = {
 					alert("输入命令不合法");
 				}
 			}
+			if (event.target.nodeName = "BUTTON" && event.target.getAttribute("id") == "refreshBtn") {
+				render.emptyCommand();
+			}
 		}, false);
 		textarea.addEventListener("keyup", function(event) {
 			if (event.keyCode == 13) {
