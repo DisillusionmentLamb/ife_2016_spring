@@ -21,8 +21,50 @@ var render = {
 		// 更新指向
 		box.style.transform = render.rotateBoxStyle(box);
 
+		// 渲染墙
+		render.renderWall();
+		
 		// 更新记录指向
 		render.lastHead = player.head;
+	},
+
+	// 渲染墙
+	renderWall : function () {
+		
+		// 之前有墙的话，遍历清除
+		var wallBeforeArr = document.getElementsByClassName('wall');
+		if (wallBeforeArr) {
+			for (var i = 0; i < wallBeforeArr.length; i++) {
+				wallBeforeArr[i].removeAttribute('class');
+				wallBeforeArr[i].removeAttribute('style');
+			}
+		}
+
+		// 遍历设置
+		for (var i = 0; i < ChessBox.wall.length; i++) {
+			document.getElementById('row-' + ChessBox.wall[i][1] + '-col-' + ChessBox.wall[i][0] ).setAttribute('class', 'wall');
+		}
+	},
+
+	// 设置墙颜色
+	setWallColor : function (color) {
+		var x = player.position[0];
+		var y = player.position[1];
+		switch (player.head) {
+			case 'top':
+				y -= 1;
+				break;
+			case 'right':
+				x += 1;
+				break;
+			case 'bottom':
+				y += 1;
+				break;
+			default:
+				x -= 1;
+				break;
+		}
+		document.getElementById('row-' + y + '-col-' + x ).style.backgroundColor = '#' + color;
 	},
 
 	// 渲染行号
