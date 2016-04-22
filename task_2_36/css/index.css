@@ -147,3 +147,7 @@
 	-moz-border-radius: 15px;
 	-ms-border-radius: 15px;
 }
+
+.wall {
+	background-color: #615A5A;
+}
