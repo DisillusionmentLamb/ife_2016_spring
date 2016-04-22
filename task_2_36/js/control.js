@@ -36,31 +36,33 @@ var controller = {
 				player.playerGo();
 				break;
 			case "TRA":
+				var n = 1;
+				if (commandArr[2] != undefined) {
+					n = parseInt(commandArr[2]);
+				}
+
 				if (commandArr[1] == "LEF" || commandArr[1] == "RIG") {
-					var n = 1;
-					if (commandArr[2] != undefined) {
-						n = parseInt(commandArr[2]);
-					}
+					
 					if (commandArr[1] == "LEF") {
 						// 边界判断
-						if (player.position[0] > 1) {
+						if (player.position[0] > n) {
 							player.position[0] -= n;
 						}
 					}
 					else {
-						if (player.position[0] < 10) {
+						if (player.position[0] <= 10 - n) {
 							player.position[0] += n;
 						}
 					}
 				}
 				if (commandArr[1] == "TOP" || commandArr[1] == "BOT") {
 					if (commandArr[1] == "TOP") {
-						if (player.position[1] > 1) {
+						if (player.position[1] > n) {
 							player.position[1] -= n;
 						}
 					}
 					else {
-						if (player.position[1] < 10) {
+						if (player.position[1] <= 10 - n) {
 							player.position[1] += n;
 						}
 					}

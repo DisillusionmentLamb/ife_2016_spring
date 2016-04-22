@@ -114,6 +114,7 @@ var player = {
 				if (this.position[1] > 1) {
 					var Wall_y = this.position[1] - 1;
 					ChessBox.Walls.push([this.position[0], Wall_y]);
+					console.log(ChessBox.Walls)
 				}
 			}
 			else {

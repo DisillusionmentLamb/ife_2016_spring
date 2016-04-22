@@ -33,7 +33,7 @@ var render = {
 		
 		// 之前有墙的话，遍历清除
 		var wallBeforeArr = document.getElementsByClassName('wall');
-		if (wallBeforeArr) {
+		if (wallBeforeArr.length > 0) {
 			for (var i = 0; i < wallBeforeArr.length; i++) {
 				wallBeforeArr[i].removeAttribute('class');
 				wallBeforeArr[i].removeAttribute('style');
@@ -41,8 +41,8 @@ var render = {
 		}
 
 		// 遍历设置
-		for (var i = 0; i < ChessBox.wall.length; i++) {
-			document.getElementById('row-' + ChessBox.wall[i][1] + '-col-' + ChessBox.wall[i][0] ).setAttribute('class', 'wall');
+		for (var i = 0; i < ChessBox.Walls.length; i++) {
+			document.getElementById('row-' + ChessBox.Walls[i][1] + '-col-' + ChessBox.Walls[i][0] ).setAttribute('class', 'wall');
 		}
 	},
 

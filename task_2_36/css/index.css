@@ -148,6 +148,11 @@
 	-ms-border-radius: 15px;
 }
 
+button:focus,
+button:hover {
+	outline: none;
+}
+
 .wall {
 	background-color: #615A5A;
 }
