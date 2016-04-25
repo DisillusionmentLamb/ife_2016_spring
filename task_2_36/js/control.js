@@ -34,9 +34,6 @@ var controller = {
 						console.log("非法输入！");
 						break;
 				}
-				if (!commandArr[2]) {
-					player.playerGo();
-				}
 				break;
 			case "TRA":
 				var n = 1;
@@ -73,7 +70,10 @@ var controller = {
 				break;
 			case "GO":
 				var n = 1;
-				if (commandArr[1] != undefined) {
+				if (   commandArr[1] != 'undefined' 
+					&& commandArr[1] != undefined 
+					&& commandArr[1] != ''
+					) {
 					n = parseInt(commandArr[1]);
 				}
 				for (var i = 0; i < n; i++) {
@@ -221,7 +221,13 @@ var controller = {
 			(Stack.length != 0) ? temp = Stack[Stack.length - 1] : temp = undefined;
 			// 判断节点是否为终点
 			if (p[0] == x && p[1] == y) {
+<<<<<<< HEAD
 				break;
+=======
+				clearInterval(timer);
+				console.log(222)
+				return;
+>>>>>>> c87156f79203371f775e4a1ddc833852781aad6b
 			}
 			// 向右移动
 			if (p[0] < 10 && !isVisited([p[0] + 1, p[1]]) && !isWall([p[0] + 1, p[1]])) {
@@ -289,10 +295,6 @@ var controller = {
 					}
 				}
 			}
-			else {
-				clearInterval(timer);
-			}
-			i++;
 		}, 1000);
 	},
 	// 随机墙
