@@ -5,10 +5,11 @@ var render = {
 		render.renderTopNum();
 		render.renderLeftNum();
 		render.renderChessBox();
+		render.lastHead = player.head;
 	},
 
 	// 记录小方块指向
-	lastHead : 'top',
+	lastHead : player.head,
 
 	// 更新小方块
 	refresh : function () {
@@ -42,23 +43,7 @@ var render = {
 	},
 
 	// 设置墙颜色
-	setWallColor : function (color) {
-		var x = player.position[0];
-		var y = player.position[1];
-		switch (player.head) {
-			case 'top':
-				y -= 1;
-				break;
-			case 'right':
-				x += 1;
-				break;
-			case 'bottom':
-				y += 1;
-				break;
-			default:
-				x -= 1;
-				break;
-		}
+	setWallColor : function (x, y, color) {
 		var wall = document.getElementById('row-' + y + '-col-' + x );
 		if (wall.getAttribute('class') == 'wall') {
 			wall.style.backgroundColor = '#' + color;
@@ -160,6 +145,13 @@ var render = {
 	// 创建棋盘html
 	createChessBoxHtml : function (width, height) {
 		var html = '';
+		// 方向的数组
+		var posArr = {
+			'top' : 0,
+			'right' : 1,
+			'bottom' : 2,
+			'left' : 3,
+		};
 		for (var i = 1; i <= height; i++) {
 			html += '<div>';
 			for (var j = 1; j <= width; j++) {
@@ -168,7 +160,7 @@ var render = {
 			html += '</div>';
 		}
 		html += '<div id="box" '
-				+'style="transform:rotate(0deg);'
+				+'style="transform:rotate(' + posArr[player.head] * 90 + 'deg);'
 				+'top:' + (player.position[1] - 1) * 50 + 'px;'
 				+'left:' + (player.position[0] - 1) * 50 + 'px;'
 				+'">'
