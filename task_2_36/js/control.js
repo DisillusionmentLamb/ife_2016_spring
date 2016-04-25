@@ -28,12 +28,15 @@ var controller = {
 						break;
 					case "TO":
 						var positionArr = commandArr[2].split(",");
-						controller.findWay(parseInt(positionArr[0]), parseInt(positionArr[1]));
+						controller.findWay(positionArr[0], positionArr[1]);
+						break;
 					default:
 						console.log("非法输入！");
 						break;
 				}
-				player.playerGo();
+				if (!commandArr[2]) {
+					player.playerGo();
+				}
 				break;
 			case "TRA":
 				var n = 1;
@@ -46,24 +49,44 @@ var controller = {
 					if (commandArr[1] == "LEF") {
 						// 边界判断
 						if (player.position[0] > n) {
-							player.position[0] -= n;
+							for (var i = 0; i < n; i++) {
+								setTimeout(function () {
+									player.position[0] -= 1;
+									render.refresh();
+								}, 1000 * i);
+							}
 						}
 					}
 					else {
 						if (player.position[0] <= 10 - n) {
-							player.position[0] += n;
+							for (var i = 0; i < n; i++) {
+								setTimeout(function () {
+									player.position[0] += 1;
+									render.refresh();
+								}, 1000 * i);
+							}
 						}
 					}
 				}
 				if (commandArr[1] == "TOP" || commandArr[1] == "BOT") {
 					if (commandArr[1] == "TOP") {
 						if (player.position[1] > n) {
-							player.position[1] -= n;
+							for (var i = 0; i < n; i++) {
+								setTimeout(function () {
+									player.position[1] -= 1;
+									render.refresh();
+								}, 1000 * i);
+							}
 						}
 					}
 					else {
 						if (player.position[1] <= 10 - n) {
-							player.position[1] += n;
+							for (var i = 0; i < n; i++) {
+								setTimeout(function () {
+									player.position[1] += 1;
+									render.refresh();
+								}, 1000 * i);
+							}
 						}
 					}
 				}
@@ -74,13 +97,16 @@ var controller = {
 					n = parseInt(commandArr[1]);
 				}
 				for (var i = 0; i < n; i++) {
-					player.playerGo();
+					setTimeout(function () {
+						player.playerGo();
+						render.refresh();
+					}, 1000 * i);
 				}
 				break;
 			case "BUILD":
 				player.buildWall();
 				break;
-			case "BRI":
+			case "BRU":
 				render.setWallColor(commandArr[1]);
 				break;
 			default:
@@ -119,7 +145,7 @@ var controller = {
 				break;
 			case "MOV":
 				if (commandArr[1] == "LEF" || commandArr[1] == "RIG" || commandArr[1] == "TOP" || commandArr[1] == "BOT" || commandArr[1] == "TO") {
-					if (commandArr[2].length > 0 || commandArr[2] == undefined) {
+					if (commandArr[2] == undefined || commandArr[2].length > 0) {
 						return true;
 					}
 					else {
@@ -132,7 +158,7 @@ var controller = {
 				break;
 			case "TRA":
 				if (commandArr[1] == "LEF" || commandArr[1] == "RIG" || commandArr[1] == "TOP" || commandArr[1] == "BOT") {
-					if (/^\d+$/.test(commandArr[2]) || commandArr[2] == undefined) {
+					if (commandArr[2] == undefined || /^\d+$/.test(commandArr[2])) {
 						return true;
 					}
 					else {
@@ -144,7 +170,7 @@ var controller = {
 				}
 				break;
 			case "GO":
-				if (/^\d+$/.test(commandArr[1]) || commandArr[1] == undefined) {
+				if (commandArr[1] == undefined || /^\d+$/.test(commandArr[1])) {
 					return true;
 				}
 				else {
@@ -248,29 +274,30 @@ var controller = {
 	},
 	// 为页面添加事件代理
 	addPageDelegate : function() {
-		var page = document.getElementsByTagName("body")[0],
-			textarea = document.getElementById("commandTextarea");
-		page.addEventListener("click", function(event) {
-			if (event.target.nodeName = "BUTTON" && event.target.getAttribute("id") == "commandBtn") {
-				if (controller.falseRow.length == 0) {
-					var commandArr = textarea.value.split(/\n/),
-						i = 0;
-					var timer = setInterval(function() {
-						controller.execute(commandArr[i]);
-						i++;
-						if (i > commandArr.length - 1) {
-							clearInterval(timer);
-						}
-					}, 1000);
-				}
-				else {
-					alert("输入命令不合法");
-				}
+		var commandBtn = document.getElementById("commandBtn");
+		var refreshBtn = document.getElementById("refreshBtn");
+		var textarea = document.getElementById("commandTextarea");
+		commandBtn.addEventListener("click", function() {
+			if (controller.falseRow.length == 0) {
+				var commandArr = textarea.value.split(/\n/),
+					i = 0;
+				var timer = setInterval(function() {
+					controller.execute(commandArr[i]);
+					i++;
+					if (i > commandArr.length - 1) {
+						clearInterval(timer);
+					}
+				}, 1000);
 			}
-			if (event.target.nodeName = "BUTTON" && event.target.getAttribute("id") == "refreshBtn") {
-				render.emptyCommand();
+			else {
+				alert("输入命令不合法");
 			}
 		}, false);
+
+		refreshBtn.addEventListener('click', function () {
+			render.emptyCommand();
+		}, false);
+
 		textarea.addEventListener("keyup", function(event) {
 			if (event.keyCode == 13) {
 				var rows = textarea.value.split(/\n/).length;
