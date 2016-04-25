@@ -287,7 +287,7 @@ var controller = {
 			y = parseInt(Math.random() * 10 + 1);
 			
 			// 不是墙就设为墙
-			if (!player.isWall(x, y)) {
+			if (!player.isWall(x, y) && !(x == player.position[0] && y == player.position[1])) {
 				ChessBox.Walls.push([x, y]);
 			}
 
