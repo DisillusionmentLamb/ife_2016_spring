@@ -34,9 +34,6 @@ var controller = {
 						console.log("非法输入！");
 						break;
 				}
-				if (!commandArr[2]) {
-					player.playerGo();
-				}
 				break;
 			case "TRA":
 				var n = 1;
