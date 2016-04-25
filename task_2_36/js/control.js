@@ -34,9 +34,6 @@ var controller = {
 						console.log("非法输入！");
 						break;
 				}
-				if (!commandArr[2]) {
-					player.playerGo();
-				}
 				break;
 			case "TRA":
 				var n = 1;
@@ -73,7 +70,10 @@ var controller = {
 				break;
 			case "GO":
 				var n = 1;
-				if (commandArr[1] != undefined) {
+				if (   commandArr[1] != 'undefined' 
+					&& commandArr[1] != undefined 
+					&& commandArr[1] != ''
+					) {
 					n = parseInt(commandArr[1]);
 				}
 				for (var i = 0; i < n; i++) {
@@ -218,6 +218,7 @@ var controller = {
 			// 判断节点是否为终点
 			if (p[0] == x && p[1] == y) {
 				clearInterval(timer);
+				console.log(222)
 				return;
 			}
 			// 向右移动
@@ -262,6 +263,7 @@ var controller = {
 		}
 		else {
 			clearInterval(timer);
+			console.log(111)
 		}
 		}, 1000);
 	},
