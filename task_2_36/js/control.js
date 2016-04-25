@@ -194,7 +194,9 @@ var controller = {
 	findWay : function(x, y) {
 		var Stack = [],
 			visited = [],
-			p = null;		// 前驱结点
+			p = null,		// 前驱结点
+			walked = [],	// 方块走过的路径
+			temp = null;
 		// 判断是否该节点访问过
 		function isVisited(arr) {
 			var result = [].some.call(visited, function(item) {
@@ -212,13 +214,14 @@ var controller = {
 		// 将起点位置压入栈
 		Stack.push([player.position[0],player.position[1]]);
 		visited.push([player.position[0],player.position[1]]);
-		var timer = setInterval(function(){ 
-			if (!(Stack.length == 0)){
+		while (Stack.length != 0) {
 			p = Stack.pop();
+			walked.push([p[0], p[1]]);
+			// 记录当前栈顶元素
+			(Stack.length != 0) ? temp = Stack[Stack.length - 1] : temp = undefined;
 			// 判断节点是否为终点
 			if (p[0] == x && p[1] == y) {
-				clearInterval(timer);
-				return;
+				break;
 			}
 			// 向右移动
 			if (p[0] < 10 && !isVisited([p[0] + 1, p[1]]) && !isWall([p[0] + 1, p[1]])) {
@@ -240,32 +243,58 @@ var controller = {
 				visited.push([p[0], p[1] - 1]);
 				Stack.push([p[0], p[1] - 1]);
 			}
-			// 若栈顶元素改变，执行动画
-			if (!(p[0] == Stack[Stack.length-1][0] && p[1] == Stack[Stack.length-1][1])) {
-				if (p[0] == Stack[Stack.length-1][0]) {
-					if (p[1] > Stack[Stack.length-1][1]) {
+
+			if (temp != undefined && Stack.length > 0) {
+				if ((temp[0] == Stack[Stack.length - 1][0] && temp[1] == Stack[Stack.length - 1][1])){
+					walked.pop();
+				}
+			}
+		}
+		controller.createCommand(walked);
+	},
+
+	// 根据寻路算法返回的路径生成动画命令
+	createCommand : function(walkedArr) {
+		var i = 1;
+		var timer = setInterval(function() {
+			if (i != walkedArr.length) {
+				if (walkedArr[i][0] == walkedArr[i-1][0]) {
+					if (walkedArr[i][1] < walkedArr[i-1][1]) {
 						controller.execute("MOV TOP");
 					}
 					else {
 						controller.execute("MOV BOT");
 					}
 				}
-				else {
-					if (p[0] > Stack[Stack.length-1][0]) {
-						controller.execute("MOV LEF");
+				if (walkedArr[i][1] == walkedArr[i-1][1]) {
+					if (walkedArr[i][0] > walkedArr[i-1][0]) {
+						controller.execute("MOV RIG");
 					}
 					else {
+						controller.execute("MOV LEF");
+					}
+				}
+				if ((walkedArr[i][1] != walkedArr[i-1][1]) && (walkedArr[i][0] != walkedArr[i-1][0])) {
+					if (walkedArr[i][1] < walkedArr[i-1][1]) {
+						controller.execute("MOV TOP");
+					}
+					else {
+						controller.execute("MOV BOT");
+					}
+					if (walkedArr[i][0] > walkedArr[i-1][0]) {
 						controller.execute("MOV RIG");
+					}
+					else {
+						controller.execute("MOV LEF");
 					}
 				}
 			}
-		}
-		else {
-			clearInterval(timer);
-		}
+			else {
+				clearInterval(timer);
+			}
+			i++;
 		}, 1000);
 	},
-
 	// 随机墙
 	randomWall : function () {
 		// 初始化，清除原来的墙
