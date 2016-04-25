@@ -49,44 +49,24 @@ var controller = {
 					if (commandArr[1] == "LEF") {
 						// 边界判断
 						if (player.position[0] > n) {
-							for (var i = 0; i < n; i++) {
-								setTimeout(function () {
-									player.position[0] -= 1;
-									render.refresh();
-								}, 1000 * i);
-							}
+							player.position[0] -= n;
 						}
 					}
 					else {
 						if (player.position[0] <= 10 - n) {
-							for (var i = 0; i < n; i++) {
-								setTimeout(function () {
-									player.position[0] += 1;
-									render.refresh();
-								}, 1000 * i);
-							}
+							player.position[0] += n;
 						}
 					}
 				}
 				if (commandArr[1] == "TOP" || commandArr[1] == "BOT") {
 					if (commandArr[1] == "TOP") {
 						if (player.position[1] > n) {
-							for (var i = 0; i < n; i++) {
-								setTimeout(function () {
-									player.position[1] -= 1;
-									render.refresh();
-								}, 1000 * i);
-							}
+							player.position[1] -= n;
 						}
 					}
 					else {
 						if (player.position[1] <= 10 - n) {
-							for (var i = 0; i < n; i++) {
-								setTimeout(function () {
-									player.position[1] += 1;
-									render.refresh();
-								}, 1000 * i);
-							}
+							player.position[1] += n;
 						}
 					}
 				}
@@ -97,17 +77,30 @@ var controller = {
 					n = parseInt(commandArr[1]);
 				}
 				for (var i = 0; i < n; i++) {
-					setTimeout(function () {
-						player.playerGo();
-						render.refresh();
-					}, 1000 * i);
+					player.playerGo();
 				}
 				break;
 			case "BUILD":
 				player.buildWall();
 				break;
 			case "BRU":
-				render.setWallColor(commandArr[1]);
+				var x = player.position[0];
+				var y = player.position[1];
+				switch (player.head) {
+					case 'top':
+						y -= 1;
+						break;
+					case 'right':
+						x += 1;
+						break;
+					case 'bottom':
+						y += 1;
+						break;
+					default:
+						x -= 1;
+						break;
+				}
+				render.setWallColor(x, y, commandArr[1]);
 				break;
 			default:
 				console.log("command false");
@@ -272,10 +265,140 @@ var controller = {
 		}
 		}, 1000);
 	},
+
+	// 随机墙
+	randomWall : function () {
+		// 初始化，清除原来的墙
+		render.init();
+		ChessBox.Walls = [];
+
+		// 随机生成
+		// 墙的数量
+		var num = parseInt(Math.random() * 30);
+		
+		// 缓存将要生成的墙的坐标
+		var x = 0;
+		var y = 0;
+
+		// 循环生成
+		for (var i = 0; i < num; i++) {
+			
+			x = parseInt(Math.random() * 10 + 1);
+			y = parseInt(Math.random() * 10 + 1);
+			
+			// 不是墙就设为墙
+			if (!player.isWall(x, y) && !(x == player.position[0] && y == player.position[1])) {
+				ChessBox.Walls.push([x, y]);
+			}
+
+		}
+
+		render.refresh();
+	},
+
+	// 有趣的墙
+	interestingWall : function () {
+		var wall = {
+			heart : [
+				[1, 4, 'F44336'],
+				[1, 5, 'F44336'],
+				[2, 3, 'F44336'],
+				[2, 6, 'F44336'],
+				[3, 2, 'F44336'],
+				[3, 7, 'F44336'],
+				[4, 2, 'F44336'],
+				[4, 8, 'F44336'],
+				[5, 3, 'F44336'],
+				[5, 9, 'F44336'],
+				[10, 4, 'F44336'],
+				[10, 5, 'F44336'],
+				[9, 3, 'F44336'],
+				[9, 6, 'F44336'],
+				[8, 2, 'F44336'],
+				[8, 7, 'F44336'],
+				[7, 2, 'F44336'],
+				[7, 8, 'F44336'],
+				[6, 3, 'F44336'],
+				[6, 9, 'F44336']
+			],
+			baidu : [
+				[1, 5, '4D82E4'],
+				[1, 6, '4D82E4'],
+				[2, 5, '4D82E4'],
+				[2, 6, '4D82E4'],
+				[2, 9, '4D82E4'],
+				[3, 3, '4D82E4'],
+				[3, 4, '4D82E4'],
+				[3, 8, '4D82E4'],
+				[3, 9, '4D82E4'],
+				[4, 3, '4D82E4'],
+				[4, 4, '4D82E4'],
+				[4, 7, '4D82E4'],
+				[4, 8, '4D82E4'],
+				[4, 9, '4D82E4'],
+				[5, 7, '4D82E4'],
+				[5, 8, '4D82E4'],
+				[5, 9, '4D82E4'],
+				[10, 5, '4D82E4'],
+				[10, 6, '4D82E4'],
+				[9, 5, '4D82E4'],
+				[9, 6, '4D82E4'],
+				[9, 9, '4D82E4'],
+				[8, 3, '4D82E4'],
+				[8, 4, '4D82E4'],
+				[8, 8, '4D82E4'],
+				[8, 9, '4D82E4'],
+				[7, 3, '4D82E4'],
+				[7, 4, '4D82E4'],
+				[7, 7, '4D82E4'],
+				[7, 8, '4D82E4'],
+				[7, 9, '4D82E4'],
+				[6, 7, '4D82E4'],
+				[6, 8, '4D82E4'],
+				[6, 9, '4D82E4']
+			],
+			google : [
+				[2, 5, 'FBBC05'],
+				[2, 6, 'FBBC05'],
+				[3, 4, 'EA4335'],
+				[3, 7, '34A853'],
+				[4, 3, 'EA4335'],
+				[4, 8, '34A853'],
+				[5, 2, 'EA4335'],
+				[5, 9, '34A853'],
+				[6, 2, 'EA4335'],
+				[6, 5, '4285F4'],
+				[6, 9, '34A853'],
+				[7, 5, '4285F4'],
+				[7, 8, '34A853'],
+				[8, 5, '4285F4'],
+				[8, 7, '4285F4'],
+				[9, 5, '4285F4'],
+				[9, 6, '4285F4']
+			]
+		}
+
+		var whichWall = '';
+		switch (parseInt(Math.random() * 3)) {
+			case 0:
+				whichWall = 'heart';
+				break;
+			case 1:
+				whichWall = 'baidu';
+				break;
+			default:
+				whichWall = 'google';
+				break;
+		}
+		return wall[whichWall];
+	},
+
 	// 为页面添加事件代理
 	addPageDelegate : function() {
 		var commandBtn = document.getElementById("commandBtn");
 		var refreshBtn = document.getElementById("refreshBtn");
+		var randomWall = document.getElementById("randomWall");
+		var interestingWall = document.getElementById("interestingWall");
 		var textarea = document.getElementById("commandTextarea");
 		commandBtn.addEventListener("click", function() {
 			if (controller.falseRow.length == 0) {
@@ -296,6 +419,23 @@ var controller = {
 
 		refreshBtn.addEventListener('click', function () {
 			render.emptyCommand();
+		}, false);
+
+		randomWall.addEventListener('click', function () {
+			controller.randomWall();
+		}, false);
+
+		interestingWall.addEventListener('click', function () {
+			// 初始化，清除原来的墙
+			render.init();
+			ChessBox.Walls = [];
+
+			var wall = controller.interestingWall();
+			for (var i = 0; i < wall.length; i++) {
+				ChessBox.Walls.push([wall[i][0], wall[i][1]]);
+				render.refresh();
+				render.setWallColor(wall[i][0], wall[i][1], wall[i][2]);
+			}
 		}, false);
 
 		textarea.addEventListener("keyup", function(event) {
