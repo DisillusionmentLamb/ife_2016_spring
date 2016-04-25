@@ -31,19 +31,14 @@ var render = {
 	// 渲染墙
 	renderWall : function () {
 		
-		// 之前有墙的话，遍历清除
-		var wallBeforeArr = document.getElementsByClassName('wall');
-		if (wallBeforeArr.length > 0) {
-			for (var i = 0; i < wallBeforeArr.length; i++) {
-				wallBeforeArr[i].removeAttribute('class');
-				wallBeforeArr[i].removeAttribute('style');
+		// 遍历设置
+		for (var i = 0; i < ChessBox.Walls.length; i++) {
+			var cell = document.getElementById('row-' + ChessBox.Walls[i][1] + '-col-' + ChessBox.Walls[i][0] );
+			if (cell) {
+				cell.setAttribute('class', 'wall');
 			}
 		}
 
-		// 遍历设置
-		for (var i = 0; i < ChessBox.Walls.length; i++) {
-			document.getElementById('row-' + ChessBox.Walls[i][1] + '-col-' + ChessBox.Walls[i][0] ).setAttribute('class', 'wall');
-		}
 	},
 
 	// 设置墙颜色
@@ -64,7 +59,10 @@ var render = {
 				x -= 1;
 				break;
 		}
-		document.getElementById('row-' + y + '-col-' + x ).style.backgroundColor = '#' + color;
+		var wall = document.getElementById('row-' + y + '-col-' + x );
+		if (wall.getAttribute('class') == 'wall') {
+			wall.style.backgroundColor = '#' + color;
+		}
 	},
 
 	// 渲染行号
