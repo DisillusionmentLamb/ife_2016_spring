@@ -28,7 +28,7 @@ var controller = {
 						break;
 					case "TO":
 						var positionArr = commandArr[2].split(",");
-						controller.findWay(positionArr[0], positionArr[1]);
+						controller.findWay(parseInt(positionArr[0]), parseInt(positionArr[1]));
 					default:
 						console.log("非法输入！");
 						break;
@@ -193,7 +193,7 @@ var controller = {
 		// 将起点位置压入栈
 		Stack.push([player.position[0],player.position[1]]);
 		visited.push([player.position[0],player.position[1]]);
-		timer = setInterval(function(){ 
+		var timer = setInterval(function(){ 
 			if (!(Stack.length == 0)){
 			p = Stack.pop();
 			// 判断节点是否为终点
