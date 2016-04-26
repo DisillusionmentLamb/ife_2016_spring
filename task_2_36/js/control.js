@@ -221,13 +221,7 @@ var controller = {
 			(Stack.length != 0) ? temp = Stack[Stack.length - 1] : temp = undefined;
 			// 判断节点是否为终点
 			if (p[0] == x && p[1] == y) {
-<<<<<<< HEAD
 				break;
-=======
-				clearInterval(timer);
-				console.log(222)
-				return;
->>>>>>> c87156f79203371f775e4a1ddc833852781aad6b
 			}
 			// 向右移动
 			if (p[0] < 10 && !isVisited([p[0] + 1, p[1]]) && !isWall([p[0] + 1, p[1]])) {
