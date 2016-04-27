@@ -29,22 +29,6 @@ var render = {
 
 	},
 
-	// 小球移动
-	// 传入每次坐标数组
-	// arr = [
-	// 		[x0,y0], // 起点
-	// 		[x1,y1], // 中间点，不能穿墙，可以斜着走
-	// 		[x2,y2],
-	// 		…………
-	// 		[x3,y3] // 终点
-	// ]
-	ballMove : function (arr) {
-		//	遍历数组
-			//  依次调用 renderBall
-			//  渲染小球位置
-			render.renderBall(pos);
-	},
-
 	// 渲染墙
 	renderWalls : function (walls) {
 		// 遍历渲染
