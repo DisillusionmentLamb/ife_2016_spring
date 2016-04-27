@@ -8,6 +8,9 @@ var controller = {
 	// 渲染画布
 	init : function () {
 		
+		// 绑定页面点击事件到click处理
+		// some code
+
 		// 根据屏幕尺寸线设置好画布大小
 		// 每20px一个坐标点，有余数放两边
 		// 画布大小存在model里，坐标值个数
