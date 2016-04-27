@@ -52,13 +52,27 @@ var controller = {
 		// 获取该位置的坐标
 		var pos = controller.getPos([x_by_px, y_by_px]);
 
+		// 判断该坐标是否为墙
+		if (isWall) {
+			// 是就退出
+			return;
+		}
+
 		// 把坐标作为终点坐标
 		// 使用model的寻路算法
 		// 得到步骤数组
 		var setpArr = model.ball.goTo(pos);
 
+		// 无法走到该点就退出
+		if (!setpArr) {
+			return;
+		}
+
 		// 按照步骤数组渲染动画
 		render.ballMove(stepArr);
+
+		// 更新小球位置
+		model.ball.pos = pos;
 
 		// 判断是否结束
 		if (end) {
