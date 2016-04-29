@@ -10,7 +10,7 @@
 	<div class="container">
 		<div id="topNum"></div>
 		<div id="leftNum"></div>
-		<div id="chessBox"></div>
+		<div id="chessBox" title="左键建墙，右键寻址"></div>
 		<div class="command">
 			<div class="input">
 				<div id="commandLine">
@@ -22,6 +22,24 @@
 			<button id="refreshBtn">清空</button><br>
 			<button id="randomWall">随机墙</button>
 			<button id="interestingWall">有趣的墙</button>
+			<div class="desc">
+				<p>在棋盘上，左键建墙，右键寻址</p>
+				<ul>
+					<li>GO n：向蓝色边所面向的方向前进n格</li>
+					<li>TUN LEF：向左转（逆时针旋转90度）</li>
+					<li>TUN RIG：向右转（顺时针旋转90度）</li>
+					<li>TUN BAC：向右转（旋转180度）</li>
+					<li>TRA LEF：向屏幕的左侧移动n格，方向不变</li>
+					<li>TRA TOP n：向屏幕的上面移动n格，方向不变</li>
+					<li>TRA RIG n：向屏幕的右侧移动n格，方向不变</li>
+					<li>TRA BOT n：向屏幕的下面移动n格，方向不变</li>
+					<li>MOV LEF n：方向转向屏幕左侧，移动n格</li>
+					<li>MOV TOP n：方向转向屏幕上面，移动n格</li>
+					<li>MOV RIG n：方向转向屏幕右侧，移动n格</li>
+					<li>MOV BOT n：方向转向屏幕下面，移动n格</li>
+					<li>MOV TO x,y，移动到坐标为x，y的地方</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<script src="js/model.js"></script>

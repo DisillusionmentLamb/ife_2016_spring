@@ -22,32 +22,28 @@ var player = {
 
 		if (this.head == "left" || this.head == "right") {
 			if (this.head == "left") {
-				// 边界判断
-				if (this.position[0] > 1) {
-					next_x = this.position[0] - 1;
-				}
+				next_x = this.position[0] - 1;
 			}
 			else {
-				if (this.position[0] < 10) {
-					next_x = this.position[0] + 1;
-				}
+				next_x = this.position[0] + 1;
 			}
 		}
 		else {
 			if (this.head == "top") {
-				if (this.position[1] > 1) {
-					next_y = this.position[1] - 1;
-				}
+				next_y = this.position[1] - 1;
 			}
 			else {
-				if (this.position[1] < 10) {
-					next_y = this.position[1] + 1;
-				}
+				next_y = this.position[1] + 1;			
 			}
 		}
-
+		if (next_x > 10 || next_x < 1 || next_y > 10 || next_y < 1) {
+			return false;
+		}
 		if (!this.isWall(next_x, next_y)) {
 			this.position = [next_x, next_y];
+			return true;
+		} else {
+			return false;
 		}
 	},
 	// 向左旋转朝向,逆时针旋转90°
@@ -101,8 +97,36 @@ var player = {
 				break;
 		}
 	},
+	// 方向不变，直接平移
+	move : function (direction) {
+		var next_y = this.position[1];
+		var next_x = this.position[0];
+		switch (direction) {
+			case 'top':
+				next_y -= 1;
+				break;
+			case 'down':
+				next_y += 1;
+				break;
+			case 'left':
+				next_x -= 1;
+				break;
+			default:
+				next_x += 1;
+				break;
+		}
+		if (next_x > 10 || next_x < 1 || next_y > 10 || next_y < 1) {
+			return false;
+		}
+		if (!this.isWall(next_x, next_y)) {
+			this.position = [next_x, next_y];
+			return true;
+		} else {
+			return false;
+		}
+	},
 	// 在方块head朝向位置建立墙
-	buildWall : function() {
+	buildWall : function(x, y) {
 
 		var Wall_x = parseInt(this.position[0]);
 		var Wall_y = parseInt(this.position[1]);
@@ -128,11 +152,20 @@ var player = {
 		}
 
 		if (Wall_x < 1 || Wall_x > 10 || Wall_y < 1 || Wall_y > 10) {
-			return ;
+			return false;
+		}
+
+		// 双击修墙
+		if (x != undefined && y != undefined) {
+			Wall_x = x;
+			Wall_y = y;
 		}
 
 		if (!this.isWall(Wall_x, Wall_y)) {
 			ChessBox.Walls.push([Wall_x, Wall_y]);
+			return true;
+		} else {
+			return false;
 		}
 	},
 

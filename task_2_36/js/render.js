@@ -45,9 +45,11 @@ var render = {
 	// 设置墙颜色
 	setWallColor : function (x, y, color) {
 		var wall = document.getElementById('row-' + y + '-col-' + x );
-		if (wall.getAttribute('class') == 'wall') {
+		if (wall && wall.getAttribute('class') == 'wall') {
 			wall.style.backgroundColor = '#' + color;
+			return true;
 		}
+		return false;
 	},
 
 	// 渲染行号
