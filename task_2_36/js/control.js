@@ -544,15 +544,16 @@ var controller = {
 		var textarea = document.getElementById("commandTextarea");
 		var chessBox = document.getElementById("chessBox");
 		commandBtn.addEventListener("click", function() {
-			if (controller.falseRow.length == 0 && controller.isExecuting == false && textarea.value) {
+			if (!controller.isReady()) {
+				return;
+			}
+			if (controller.falseRow.length == 0 && textarea.value) {
 				var commandArr = textarea.value.split(/\n/);
 				if (!commandArr || commandArr.length == 0) {
 					return false;
 				}
 				commandArr = controller.correctCommand(commandArr);
 				controller.execute(commandArr);
-			} else if (controller.isExecuting == true) {
-				alert('请等待当前命令执行完毕');
 			} else {
 				alert("输入命令不合法");
 			}
@@ -563,31 +564,32 @@ var controller = {
 		}, false);
 
 		randomWall.addEventListener('click', function () {
-			controller.randomWall();
+			if (controller.isReady()) {
+				controller.randomWall();
+			}
 		}, false);
 
 		chessBox.addEventListener('mouseup', function (e) {
 			if (e.target && /row/.test(e.target.getAttribute('id')) && e.button == 2) {
 				var arr = e.target.getAttribute('id').split('-');
-				if (controller.isExecuting == true) {
-					alert('请等待当前命令执行完毕');
-				} else {
+				if (controller.isReady()) {
 					controller.execute(['MOV TO '+arr[3]+','+arr[1]]);
 				}
 			}
 		}, false);
 
 		chessBox.addEventListener('contextmenu', function (e) {
-			if (document.all) window.event.returnValue = false;// for IE  
-    		else event.preventDefault();  
+			if (document.all) {
+				window.event.returnValue = false;// for IE  
+			} else {
+				event.preventDefault();  
+			}
 		}, false);
 
 		chessBox.addEventListener('click', function (e) {
 			if (e.target && /row/.test(e.target.getAttribute('id'))) {
 				var arr = e.target.getAttribute('id').split('-');
-				if (controller.isExecuting == true) {
-					alert('请等待当前命令执行完毕');
-				} else {
+				if (controller.isReady()) {
 					player.buildWall(parseInt(arr[3]), parseInt(arr[1]));
 					render.renderWall();
 				}
@@ -595,6 +597,10 @@ var controller = {
 		}, false);
 
 		interestingWall.addEventListener('click', function () {
+			if (!controller.isReady()) {
+				return;
+			}
+
 			// 初始化，清除原来的墙
 			render.init();
 			ChessBox.Walls = [];
@@ -726,6 +732,15 @@ var controller = {
 			}
 		}
 		return okCommand;
+	},
+
+	// 操作前判断是否正在处理动画
+	isReady : function () {
+		if (controller.isExecuting == true) {
+			alert('请等待当前命令执行完毕');
+			return false;
+		}
+		return true;
 	}
 }
 
