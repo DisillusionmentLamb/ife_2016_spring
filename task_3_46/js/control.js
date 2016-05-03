@@ -9,13 +9,13 @@ var controller = {
 	init : function () {
 		
 		// 绑定页面点击事件到click处理
-		// some code
+		document.getElementById('wrap').addEventListener('click', controller.click);
+		window.onresize = controller.init;
 
 		// 根据屏幕尺寸线设置好画布大小
 		// 每20px一个坐标点，有余数放两边
 		// 画布大小存在model里，坐标值个数
-		// some code
-		model.wrap = [x, y];
+		model.wrap = [parseInt(window.document.documentElement.clientWidth / 20), parseInt(window.document.documentElement.clientHeight / 20)];
 
 		// 开始游戏
 		controller.startGame();
@@ -26,37 +26,36 @@ var controller = {
 	startGame : function () {
 
 		// 初始化秘密文件位置
-		model.file = [x, y];
+		model.file = [parseInt(Math.random() * model.wrap[0] + 1), model.wrap[1]];
 
 		// 初始化小球位置
-		model.pos = [x, y];
+		model.ball.pos = [parseInt(Math.random() * model.wrap[0] + 1), 1];
+		model.ball.lastPos = [model.ball.pos[0], model.ball.pos[1]];
 
 		// 初始化墙
 		// 生成随机墙
-		var randomWalls = model.walls.create();
+		model.walls.create();
 		
 		// 使用寻路算法判断是否能到终点
-		if (!ok) {
+		while (model.ball.goTo(model.file[0], model.file[1]).length == 0) {
 			// 不能到再次生成随机墙直到可以
-			randomWalls = model.walls.create();
+			model.walls.create();
 		}
-		
-		// 设置墙
-		model.walls.allWall = randomWalls;
 
 		// 渲染，开始游戏
 		render.newGame();
 	},
 
 	// 处理页面点击事件
-	click : function (e) {
+	click : function (event) {
+		var e = event || window.event;
 
 		// 根据点击的点在屏幕上的位置
 		// 获取该位置的坐标
-		var pos = controller.getPos([x_by_px, y_by_px]);
+		var pos = controller.getPos(e);
 
 		// 判断该坐标是否为墙
-		if (isWall) {
+		if (model.walls.isWall(pos[0], pos[1])) {
 			// 是就退出
 			return;
 		}
@@ -68,22 +67,24 @@ var controller = {
 		// 把坐标作为终点坐标
 		// 使用model的寻路算法
 		// 得到步骤数组
-		var setpArr = model.ball.goTo(pos);
+		model.ball.moveStep = model.ball.goTo(pos[0], pos[1]);
 
 		// 无法走到该点就退出
-		if (!setpArr) {
+		if (!model.ball.moveStep || model.ball.moveStep.length == 0) {
 			return;
 		}
 
 		// 按照步骤数组渲染动画
-		controller.ballMove(stepArr);
+		controller.ballMove();
 
 	},
 
 	// 根据点击的点在屏幕上的位置
 	// 获取该位置的坐标
-	getPos : function ([x_by_px, y_by_px]) {
-		// 返回坐标
+	getPos : function (e) {
+		var width = e.clientX;
+		var height = e.clientY;
+		return [parseInt(width / 20 + 1), parseInt(height / 20 + 1)];
 	},
 
 	// 小球移动
@@ -95,28 +96,37 @@ var controller = {
 	// 		…………
 	// 		[x3,y3] // 终点
 	// ]
-	ballMove : function (stepArr) {
+	ballMove : function () {
 
-		// 遍历步骤
-		for (var i = 0; i < stepArr.length; i++) {
-
-			// 应该需要一个延时
-
-			// 更新小球位置
-			model.ball.pos = stepArr[i];
-		
-			// 按步骤坐标渲染小球
-			render.renderBall(stepArr[i]);
-
-			// 任务47要在这里查询小球是否到了守卫的防卫范围
-			// 以及子弹是否打到小球
-
+		if (model.ball.moveStep.length == 0) {
+			return;
 		}
 
+		var tmpPos = [];
+
+		tmpPos = model.ball.moveStep.shift();
+
+		// 更新小球位置
+		model.ball.lastPos = [model.ball.pos[0], model.ball.pos[1]];
+		model.ball.pos = [tmpPos[0], tmpPos[1]];
+	
+		// 渲染小球
+		render.renderBall();
+
+		// 任务47要在这里查询小球是否到了守卫的防卫范围
+		// 以及子弹是否打到小球
+
+
 		// 判断是否结束
-		if (end) {
+		if (model.ball.pos[0] == model.file[0] && model.ball.pos[1] == model.file[1]) {
 			// 结束就开始新游戏
 			controller.startGame();
+		}
+
+		if (model.ball.moveStep.length > 0) {
+			setTimeout(function () {
+				controller.ballMove();
+			}, 50);
 		}
 	}
 

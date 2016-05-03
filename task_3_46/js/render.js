@@ -6,53 +6,70 @@ var render = {
 	// 开始新游戏
 	newGame : function () {
 		
-		// 获取画布DOM
-		// some code
-		
 		// 按照model的画布大小设置画布大小
-		// somecode
+		render.setSize();
 
 		// 清空画布
-		// some code
+		render.emptyCanvas();
 		
-		// 从model获取墙
 		// 渲染墙
-		render.renderWalls(model.walls.allWall);
+		render.renderWalls();
 
-		// 从model获取秘密文件位置
 		// 渲染秘密文件
-		// some code
+		render.renderFile();
 
-		// 从model获取小球位置
 		// 渲染小球
-		render.renderBall(model.ball.pos);
+		render.renderBall();
 
 	},
 
 	// 渲染墙
-	renderWalls : function (walls) {
-		// 遍历渲染
+	renderWalls : function () {
+		var ctx = render.getCtx();
+		for (var i = 0; i < model.walls.allWall.length; i++) {
+			render.fill(model.walls.allWall[i][0], model.walls.allWall[i][1], '#2E1E1E');
+		}
 	},
 
 	// 渲染小球
-	renderBall : function (pos) {
-		// 按位置渲染小球
+	renderBall : function () {
+		render.fill(model.ball.lastPos[0], model.ball.lastPos[1], '#FFE6CD');
+		render.fill(model.ball.pos[0], model.ball.pos[1], '#44B811');
 	},
 
-	// 画布是每20px的正方体为一个坐标点
-	// 这个函数接受坐标点
-	// 返回canvas可用的区域值(px为单位)
-	// 比如
-	// pos = [2, 2]
-	// 返回
-	//  {
-	//  	'start_x' : 20, // 开始x位置，均相对于canvas起点，px单位
-	//  	'start_y' : 20, // 开始y位置
-	//  	'x_len' : 20, // 长度
-	//  	'y_len' : 20 // 宽度
-	//  }
-	posToRec : function (pos) {
-		// some code
+	// 得到canvas
+	getCanvas : function () {
+		return document.getElementById('wrap');
+	},
+
+	getCtx : function () {
+		return document.getElementById('wrap').getContext('2d');
+	},
+
+	// 填充一个位置
+	fill : function (x, y, color) {
+		var ctx = render.getCtx();
+		ctx.fillStyle = color;
+		ctx.fillRect((x - 1) * 20, (y - 1) * 20, 20, 20);
+	},
+
+	// 渲染秘密文件
+	renderFile : function () {
+		render.fill(model.file[0], model.file[1], '#F4AF29');
+	},
+
+	// 清空画布
+	emptyCanvas : function () {
+		render.fill(0, 0, model.wrap[0] * 20, model.wrap[1] * 20, '#FFE6CD');
+	},
+
+	// 设置画布大小
+	setSize : function () {
+		var wrap = render.getCanvas();
+		wrap.setAttribute('height', (model.wrap[1] * 20).toString() + 'px');
+		wrap.setAttribute('width', (model.wrap[0] * 20).toString() + 'px');
+		wrap.style.marginTop = ((window.screen.height % 20) / 2).toString() + 'px';
+		wrap.style.marginLeft = ((window.screen.width % 20) / 2).toString() + 'px';
 	}
 
 }
