@@ -78,8 +78,8 @@ var render = {
 		wrap.setAttribute('height', (wrapper.size[1] * 20).toString() + 'px');
 		wrap.setAttribute('width', (wrapper.size[0] * 20).toString() + 'px');
 		// 除不尽的放周围
-		wrap.style.marginTop = ((window.screen.height % 20) / 2).toString() + 'px';
-		wrap.style.marginLeft = ((window.screen.width % 20) / 2).toString() + 'px';
+		wrap.style.marginTop = ((window.document.documentElement.clientHeight % 20) / 2).toString() + 'px';
+		wrap.style.marginLeft = ((window.document.documentElement.clientWidth % 20) / 2).toString() + 'px';
 	},
 
 	// 渲染守卫
