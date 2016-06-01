@@ -1,0 +1,293 @@
+@charset "UTF-8";
+@import url("font-awesome.min.css");
+
+/* 根据不同屏幕宽度设置根元素大小 */
+html {
+    font-size : 20px;
+}
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 25px;
+    }
+}
+@media only screen and (min-width: 428px){
+    html {
+        font-size: 26.75px;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 30px; 
+    }
+}
+@media only screen and (min-width: 569px){
+    html {
+        font-size: 35px; 
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 40px; 
+    }
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+	font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+	background: #f2f2f2;
+	color: #333;
+	font-size: 14px;
+}
+
+.container {
+
+	max-width: 20rem;
+	margin: 0 auto;
+}
+
+section {
+	background: #fff;
+}
+
+/* header部分 */
+
+header {
+	position: relative;
+	line-height: 2.2rem;
+	background: #80cbd1;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+}
+
+header .header-back {
+	position: absolute;
+	left: 0.4rem;
+	top: 0;
+
+}
+
+header .header-back span {
+	font-size: 12px;
+}
+
+header .header-back i {
+	font-size: 30px;
+	position: relative;
+	top: 6px;
+}
+
+header h1 {
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* 导航条部分 */
+
+nav {
+	height: 2.2rem;
+	display: flex;
+}
+
+nav .nav-item {
+	line-height: 2.2rem;
+	text-align: center;
+	flex: 1;
+}
+
+nav .nav-item.selected {
+	border-bottom: 0.08rem solid #80cbd1;
+}
+
+/* banner部分 */
+
+.banner img {
+	width: 100%;
+}
+
+/* 标签和分栏部分 */
+
+.tag {
+	padding: 10px 8px;
+}
+
+.tab {
+	position: relative;
+	display: flex;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.tab-item {
+	flex: 1;
+	text-align: center;
+}
+
+.tab-item i {
+	display: block;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	background: #80cbd1;
+	font-size: 30px;
+	border-radius: 25px;
+	margin: 0 auto;
+}
+
+.tab-item i:before {
+	padding-top: 10px;
+}
+
+.tab-item span {
+	display: inline-block;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.col {
+	display: flex;
+	padding: 10px 10px;
+}
+
+.col-item {
+	flex: 1;
+	text-align: center;
+	border-left: 1px solid #dfdfdf;
+}
+
+.col-item:first-child {
+	border-left: none;
+}
+
+.col-item .col-img-warpper {
+	height: 2.5rem;
+	margin: 0 auto;
+}
+
+.col-item .col-img-warpper img {
+	height: 100%;
+}
+
+.col-item h3 {
+	margin: 8px auto;
+}
+
+.col-item h4 {
+	margin: 2px auto;
+	font-weight: normal;
+}
+
+/* 模块部分 */
+
+.mod {
+	margin-top: 10px;
+	padding: 10px 10px;
+}
+
+.mod h2 {
+	margin-top: 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.mod .mod-item {
+	display: flex;
+	margin-bottom: 0.3rem;
+	justify-content: space-between;
+}
+
+.mod-item .mod-item-img-warpper {
+	width: 4.5rem;
+	height: 4.5rem;
+}
+
+.mod-item .mod-item-img-warpper img {
+	width: 100%;
+	height: 100%;
+}
+
+.mod-item .mod-item-col {
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.mod-item .mod-item-col span {
+	display: block;
+	background: #f7f7f7;
+	width: 5rem;
+	line-height: 2rem;
+}
+
+/* 文章部分 */
+.article {
+	margin-top: 0.3rem;
+}
+
+.article .article-item-col {
+	display: flex;
+	justify-content: flex-start;
+	padding: 0.3rem;
+	border-bottom: 1px solid #dfdfdf; 
+}
+
+.article .article-item-col .article-img-warpper {
+	height: 3.5rem;
+	width: 5.7rem;
+}
+
+.article .article-item-col .article-img-warpper img {
+	width: 100%;
+	height: 100%;
+}
+
+.article .content {
+	display: flex;
+	margin-left: .6rem;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.article .content h3 {
+	margin: 3px;
+	max-width: 90%;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.article span {
+	font-size: 10px;
+	color: #bebebe;
+}
+
+.article .article-item-col2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: .3rem;
+}
+
+.article .article-item-col2 h3 {
+	margin: .3rem 0;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.article .article-item-col2 .article-img-warpper {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: .3rem;
+}
+
+.article .article-item-col2 .article-img-warpper img {
+	height: 3.2rem;
+	width: 4.7rem;
+}
+
+
+
